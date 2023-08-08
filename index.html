@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="media/img/logotipo_127x72.png">
+    <style>
+        /* Estilos para el footer */
+        .footer {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgb(22, 255, 1);
+        }
+
+        .footer-contenido p {
+            margin: 5px;
+        }
+    </style>
+    <!-- Eliminamos el enlace al archivo styles.css -->
+</head>
+
+<body>
+
+    <!-- Barra de navegación -->
+    <div class="navbar">
+        <button onclick="window.location.href='index.html'" class="boton-inicio">Inicio</button>
+        <img src="media/img/logotipo_127x72.png" alt="Logotipo SSR">
+        <button onclick="window.location.href='registro.html'" class="boton-inicio">Registro</button>
+    </div>
+
+    <!-- Contenedor principal -->
+    <div class="contenedor">
+        <h1>Iniciar Sesión</h1>
+        <!-- Contenedor del formulario -->
+        <div class="form-contenedor">
+            <form action="procesar_login.php" method="post">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br>
+
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" name="contrasena" required><br>
+
+                <input type="submit" value="Iniciar Sesión">
+            </form>
+            <!-- Enlace de registro -->
+            <p class="link-regitro">¿No tienes una cuenta? <a href="registro.html">Regístrate aquí</a></p>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-contenido">
+            <img src="media/img/logotipo_127x72.png" alt="Logo de la empresa">
+            <p>Contacto: sergiosevarayos@gmail.com</p>
+            <p>Sergio Seva Rayos</p>
+            <p><a href="mailto:sergiosevarayos@gmail.com">Enviar un correo</a></p>
+            <p>© <span id="year"></span> Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <script>
+        // Obtener el elemento del año
+        const yearElement = document.getElementById('year');
+
+        // Obtener el año actual
+        const year = new Date().getFullYear();
+
+        // Insertar el año actual en el elemento del año
+        yearElement.textContent = year;
+
+    </script>
+</body>
+
+</html>

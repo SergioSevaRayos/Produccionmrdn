@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Usuario</title>
+    <link rel="icon" type="image/x-icon" href="media/img/logotipo_127x72.png">
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <div class="navbar">
+        <button onclick="window.location.href='index.html'" class="boton-inicio">Inicio</button>
+        <img src="media/img/logotipo_127x72.png" alt="Logotipo SSR">
+        <button onclick="window.location.href='registro.html'" class="boton-inicio">Registro</button>
+    </div>
+    
+    <div class="contenedor">
+        <h1>Registro de Usuario</h1>
+        <div>
+            <form action="procesar_registro.php" method="post" class="form-contenedor">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required><br>
+        
+                <label for="apellidos">Apellidos:</label>
+                <input type="text" id="apellidos" name="apellidos" required><br>
+        
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br>
+        
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" name="contrasena" required><br>
+        
+                <label for="confirmar_contrasena">Confirmar Contraseña:</label>
+                <input type="password" id="confirmar_contrasena" name="confirmar_contrasena" required><br>
+        
+                <input type="submit" value="Registrarse" class="button">
+            </form>
+        </div>
+        
+    </div>
+    
+    <script>
+        // Verificar si las contraseñas coinciden al enviar el formulario
+        const contrasena = document.getElementById("contrasena");
+        const confirmarContrasena = document.getElementById("confirmar_contrasena");
+        const formulario = document.querySelector("form");
+
+        formulario.addEventListener("submit", function (event) {
+            if (contrasena.value !== confirmarContrasena.value) {
+                alert("Las contraseñas no coinciden.");
+                event.preventDefault(); // Evita que el formulario se envíe
+            }
+        });
+    </script>
+</body>
+</html>

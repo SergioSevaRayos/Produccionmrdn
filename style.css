@@ -1,0 +1,305 @@
+/* Resetear estilos predeterminados */
+body, h1, h2, form {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #252525;
+    color: #e0e0e0;
+}
+
+/* Barra de navegación */
+.navbar {
+    background-color: #1a1a1a;
+    box-shadow: 0 0 10px rgb(22, 255, 1);
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    gap: 0px;
+}
+
+.navbar a {
+    color: #16ff01;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 16px;
+}
+
+/* Estilos para el botón de inicio */
+div > .boton-inicio {
+    background-color: #4c554c;
+    color: #ffffff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    width: 200px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+div > .boton-inicio:hover {
+    background-color: #15f800;
+    box-shadow: 0 0 5px #16ff01;
+}
+
+div > .boton-inicio:active {
+    background-color: #029202;
+    box-shadow: 0 0 2px #16ff01;
+}
+
+/* Contenedor principal */
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Contenedor del formulario */
+.form-contenedor {
+    background-color: #252525;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(22, 255, 1);
+    width: 300px;
+    display: flex; /* Añadimos Flexbox al contenedor del formulario */
+    flex-direction: column;
+    align-items: center; /* Centramos verticalmente los elementos */
+}
+
+/* Estilo para el contenedor del gráfico */
+.graficos-contenedor {
+    width: 100%;
+    max-width: 400px;
+    height: 200px;
+    margin: 0 auto; /* Para centrar horizontalmente */
+}
+
+/* Estilos para los elementos label e input del formulario */
+form label {
+    flex-basis: 40%; /* Proporción de espacio horizontal */
+    color: #16ff01;
+    margin-bottom: 5px;
+}
+
+form input[type="email"],
+form input[type="password"],
+form input[type="text"],
+form input[type="date"],
+form input[type="number"] {
+    flex-basis: 60%; /* Proporción de espacio horizontal */
+    width: 90%;
+    padding: 8px;
+    border: 1px solid #16ff01;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    background-color: #252525;
+    color: #e0e0e0;
+}
+
+h1 {
+    color: #16ff01;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    color: #16ff01;
+    margin-bottom: 5px;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #16ff01;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    background-color: #1a1a1a;
+}
+
+input[type="submit"] {
+    background-color: #16ff01;
+    color: #1a1a1a;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #16ff01;
+    color: #000000;
+}
+
+.link-regitro {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.link-regitro a {
+    color: #16ff01;
+    text-decoration: none;
+}
+
+.link-regitro a:hover {
+    color: #16ff01;
+}
+
+/* Estilos para el nuevo div con los botones */
+.select-contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    padding: 15px;
+}
+
+.boton {
+    background-color: #4c554c;
+    color: #ffffff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    width: 200px;
+    font-size: 16px;
+}
+
+.boton:hover {
+    background-color: #15f800;
+    color: #000000;
+}
+
+.boton:active {
+    background-color: #029202;
+}
+
+/* Estilos para las tablas */
+.table-style {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table-style th,
+.table-style td {
+    border: 1px solid #16ff01;
+    padding: 8px;
+    text-align: center;
+}
+
+/* Estilos para el encabezado de la tabla */
+.table-style th {
+    background-color: #1a1a1a;
+    color: #16ff01;
+}
+
+/* Estilos para las filas impares de la tabla */
+.table-style tr:nth-child(odd) {
+    background-color: #252525;
+}
+
+/* Estilos para las filas pares de la tabla */
+.table-style tr:nth-child(even) {
+    background-color: #1a1a1a;
+}
+
+/* Estilos para los botones de histórico y cerrar sesión */
+.boton-historico,
+.boton-cerrar-sesion {
+    width: 100%;
+}
+
+
+/* Estilos para el contenedor de la tabla */
+.tabla-contenedor {
+    width: 100%;
+    max-width: 600px;
+    overflow-x: auto;
+    padding-bottom: 50px;
+}
+
+/* Estilos para el footer */
+.footer {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px rgb(22, 255, 1);
+}
+
+.footer-contenido p {
+    margin: 5px;
+}
+
+
+/* Estilos responsive */
+@media screen and (max-width: 576px) {
+    /* Contenedor principal */
+    .contenedor {
+        padding: 10px;
+    }
+
+    /* Contenedor del formulario en pantallas de teléfono */
+    .form-contenedor {
+        width: 100%;
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    /* Estilos para los elementos label e input del formulario en pantallas de teléfono */
+    form label {
+        flex-basis: 40%;
+        font-size: 14px;
+    }
+
+    form input[type="email"],
+    form input[type="password"],
+    form input[type="text"],
+    form input[type="date"],
+    form input[type="number"] {
+        flex-basis: 60%;
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+
+    /* Estilos para el botón de inicio en pantallas de teléfono */
+    div > .boton-inicio {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    /* Estilos para el nuevo div con los botones en pantallas de teléfono */
+    .select-contenedor {
+        width: 100%;
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    .boton {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    /* Estilos para las tablas en pantallas de teléfono */
+    .table-style {
+        width: 100%;
+        font-size: 14px;
+    }
+}
+
+

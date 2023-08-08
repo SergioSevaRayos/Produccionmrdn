@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tipo de Producción</title>
+    <link rel="icon" type="image/x-icon" href="media/img/logotipo_127x72.png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilo para el contenedor del gráfico */
+        .graficos-contenedor {
+            width: 500px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 0 auto;
+            /* Para centrar horizontalmente */
+            padding: 20px;
+        }
+        .usuario-conectado{
+            color: #16ff01;
+        }
+
+        /* Estilos para el footer */
+        .footer {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgb(22, 255, 1);
+        }
+
+        .footer-contenido p {
+            margin: 5px;
+        }
+
+        .tabla {
+            padding-left: 80px;
+            padding-right: 80px;
+            padding-top: 20px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+    <!-- Barra de navegación -->
+    <div class="navbar">
+        <button onclick="window.location.href='inicio.html'" class="boton-inicio">Inicio</button>
+        <button onclick="window.location.href='produccion_diaria.html'" class="boton-inicio">Refrigerado</button>
+        <img src="media/img/logotipo_127x72.png" alt="Logotipo SSR">
+        <button onclick="window.location.href='produccion_diaria_cong.html'" class="boton-inicio">Congelado</button>
+        <button onclick="cerrarSesion()" class="boton">Cerrar Sesión</button>
+    </div>
+    <br>
+    <div id="usuario-conectado" style="display: none;">
+        Usuario Conectado: <span id="email-usuario"  style="color: #16ff01;"></span>
+    </div>
+    <div class="graficos-contenedor">
+        <h2>Gráfico Refrigerado</h2>
+        <canvas id="graficoProduccionRefrigerado"></canvas>
+
+    </div>
+    <div class="tabla">
+        <h2 style="text-align: center;">Producción Refrigerado</h2>
+        <table id="tablaProduccionRefrigerado" class="table-style">
+            <tr>
+                <th>Fecha</th>
+                <th>Metros Cúbicos</th>
+            </tr>
+        </table>
+    </div>
+
+
+    <br>
+    <div class="graficos-contenedor">
+        <h2>Gráfico Congelado</h2>
+        <canvas id="graficoProduccionCongelado"></canvas>
+
+    </div>
+    <div class="tabla">
+        <h2 style="text-align: center;">Producción Congelado</h2>
+        <table id="tablaProduccionCongelado" class="table-style">
+            <tr>
+                <th>Fecha</th>
+                <th>Metros Cúbicos</th>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <br>
+    <script>
+        // Dentro del evento 'load'
+        window.addEventListener('load', function () {
+            const emailUsuarioElement = document.getElementById('email-usuario');
+            const userEmailCookie = getCookie("user_email");
+
+            if (userEmailCookie) {
+                // Muestra el email del usuario en el elemento HTML
+                emailUsuarioElement.textContent = userEmailCookie;
+
+                // Muestra el elemento usuario-conectado
+                const usuarioConectadoElement = document.getElementById('usuario-conectado');
+                usuarioConectadoElement.style.display = 'block';
+            }
+        });
+
+        // Función para obtener el valor de una cookie por su nombre
+        function getCookie(name) {
+            const value = "; " + document.cookie;
+            const parts = value.split("; " + name + "=");
+
+            if (parts.length === 2) {
+                return parts.pop().split(";").shift();
+            }
+        }
+    </script>
+    <script>
+
+        function cerrarSesion() {
+            // Hacer una solicitud AJAX para cerrar la sesión en el servidor
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Redireccionar a la página de inicio (index.html) después de cerrar la sesión
+                    window.location.href = "index.html";
+                }
+            };
+            xhttp.open("GET", "cerrar_sesion.php", true);
+            xhttp.send();
+        }
+
+    </script>
+    <footer class="footer">
+        <div class="footer-contenido">
+            <img src="media/img/logotipo_127x72.png" alt="Logo de la empresa">
+            <p>Contacto: sergiosevarayos@gmail.com</p>
+            <p>Sergio Seva Rayos</p>
+            <p><a href="mailto:sergiosevarayos@gmail.com">Enviar un correo</a></p>
+            <p>© <span id="year"></span> Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <script>
+        // Obtener el elemento del año
+        const yearElement = document.getElementById('year');
+
+        // Obtener el año actual
+        const year = new Date().getFullYear();
+
+        // Insertar el año actual en el elemento del año
+        yearElement.textContent = year;
+    </script>
+</body>
+
+</html>

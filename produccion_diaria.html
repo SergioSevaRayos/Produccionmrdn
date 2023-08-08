@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Producción Diaria</title>
+    <link rel="icon" type="image/x-icon" href="media/img/logotipo_127x72.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Barra de navegación -->
+    <div class="navbar">
+        <button onclick="window.location.href='inicio.html'" class="boton-inicio">Inicio</button>
+        <button onclick="window.location.href='produccion_diaria.html'" class="boton-inicio">Refrigerado</button>
+        <img src="media/img/logotipo_127x72.png" alt="Logotipo SSR">
+        <button onclick="window.location.href='produccion_diaria_cong.html'" class="boton-inicio">Congelado</button>
+        <button onclick="cerrarSesion()" class="boton">Cerrar Sesión</button>
+    </div>
+    <br>
+    <div id="usuario-conectado" style="display: none;">
+        Usuario Conectado: <span id="email-usuario" style="color: #16ff01;"></span>
+    </div>
+    <!--Añadido-->
+    <div class="tabla-contenedor">
+        <table id="produccionTable" class="table-style">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Metros Cúbicos</th>
+                </tr>
+            </thead>
+            <tbody id="produccionBody">
+                <!-- Aquí se cargarán los datos de producción -->
+            </tbody>
+        </table>
+    </div>
+    <!--Añadido-->
+
+    <!-- Contenedor principal -->
+    <div class="contenedor">
+        <br>
+        <h1>Introducir Producción Diaria Refrigerado</h1>
+        <!-- Formulario de producción diaria -->
+
+
+        <div class="form-contenedor">
+            <form action="procesar_produccion.php" method="post">
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" name="fecha" required>
+                <br>
+                <label for="metros_cubicos">Metros Cúbicos:</label>
+                <input type="number" id="metros_cubicos" name="metros_cubicos" step="0.01" required>
+                <br>
+                <input type="submit" value="Guardar Producción">
+                <br>
+            </form>
+        </div>
+
+        <!-- Espacio para separar el formulario de la tabla -->
+        <br>
+        <!-- Tabla de producción diaria -->
+        <h2>Registros de Producción Diaria</h2>
+
+        <div class="tabla-contenedor">
+            <table id="tablaProduccion" class="table-style">
+                <tr>
+                    <th>Fecha</th>
+                    <th>Metros Cúbicos</th>
+                </tr>
+            </table>
+        </div>
+        <!-- Mostrar la media diaria, mensual y anual del usuario -->
+        <h2>Media del Usuario</h2>
+        <div class="tabla-contenedor">
+            <table class="table-style">
+                <tr>
+                    <th>Tipo</th>
+                    <th>Media</th>
+                </tr>
+                <tr>
+                    <td>Diaria</td>
+                    <td id="mediaDiaria"></td>
+                </tr>
+                <tr>
+                    <td>Mensual</td>
+                    <td id="mediaMensual"></td>
+                </tr>
+                <tr>
+                    <td>Anual</td>
+                    <td id="mediaAnual"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script>
+        // Dentro del evento 'load'
+        window.addEventListener('load', function () {
+            const emailUsuarioElement = document.getElementById('email-usuario');
+            const userEmailCookie = getCookie("user_email");
+
+            if (userEmailCookie) {
+                // Muestra el email del usuario en el elemento HTML
+                emailUsuarioElement.textContent = userEmailCookie;
+
+                // Muestra el elemento usuario-conectado
+                const usuarioConectadoElement = document.getElementById('usuario-conectado');
+                usuarioConectadoElement.style.display = 'block';
+            }
+        });
+
+        // Función para obtener el valor de una cookie por su nombre
+        function getCookie(name) {
+            const value = "; " + document.cookie;
+            const parts = value.split("; " + name + "=");
+
+            if (parts.length === 2) {
+                return parts.pop().split(";").shift();
+            }
+        }
+    </script>
+    <script>
+        // ...código existente...
+
+        document.getElementById('formulario-produccion').addEventListener('submit', function (event) {
+            event.preventDefault(); // Evita el envío normal del formulario
+
+            const fecha = document.getElementById('fecha').value;
+            const metrosCubicos = parseFloat(document.getElementById('metros_cubicos').value);
+
+            guardarProduccionEnBaseDeDatos(fecha, metrosCubicos);
+        });
+
+        // Función para guardar producción en la base de datos
+        function guardarProduccionEnBaseDeDatos(fecha, metrosCubicos) {
+            // Crear una instancia de XMLHttpRequest para la solicitud AJAX
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    // La respuesta del servidor ha sido exitosa, puedes actualizar la tabla si lo deseas
+                    // console.log("Producción guardada exitosamente");
+                    window.location.href = "inicio.html";
+                }
+            };
+
+            // Configurar la solicitud
+            xhttp.open("POST", "guardar_produccion.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+            // Crear el cuerpo de la solicitud con los datos a enviar
+            const requestBody = "fecha=" + fecha + "&metros_cubicos=" + metrosCubicos;
+
+            // Enviar la solicitud
+            xhttp.send(requestBody);
+        }
+    </script>
+
+    <script>
+
+        function cerrarSesion() {
+            // Hacer una solicitud AJAX para cerrar la sesión en el servidor
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Redireccionar a la página de inicio (index.html) después de cerrar la sesión
+                    window.location.href = "index.html";
+                }
+            };
+            xhttp.open("GET", "cerrar_sesion.php", true);
+            xhttp.send();
+        }
+
+        // Mostrar el histórico de producción y las medias del usuario al cargar la página
+        mostrarHistoricoYMedias();
+    </script>
+
+
+    <script>
+        // Añadido
+        document.addEventListener("DOMContentLoaded", function () {
+            const emailUsuarioElement = document.getElementById('email-usuario');
+            const usuarioConectadoElement = document.getElementById('usuario-conectado');
+            const produccionDiv = document.getElementById('produccionDiv');
+
+            const userEmailCookie = getCookie("user_email");
+
+            if (userEmailCookie) {
+                // Muestra el email del usuario en el elemento HTML
+                emailUsuarioElement.textContent = userEmailCookie;
+
+                // Muestra el elemento usuario-conectado
+                usuarioConectadoElement.style.display = 'block';
+
+                // Llama a la función para cargar los datos de producción
+                fetchData(userEmailCookie);
+            }
+        });
+
+        function fetchData(userEmail) {
+            fetch(`mostrar_produccion.php?email=${userEmail}`)
+                .then(response => response.json())
+                .then(data => {
+                    let content = "";
+
+                    if (data.length > 0) {
+                        content += "<ul>";
+                        data.forEach(item => {
+                            content += `<li>Fecha: ${item.fecha} - Metros cúbicos: ${item.metros_cubicos}</li>`;
+                        });
+                        content += "</ul>";
+                    } else {
+                        content = "<p>No hay registros de producción para este usuario.</p>";
+                    }
+
+                    produccionDiv.innerHTML = content;
+                })
+                .catch(error => console.error("Error fetching data:", error));
+        }
+// Añadido
+    </script>
+    <footer class="footer">
+        <div class="footer-contenido">
+            <img src="media/img/logotipo_127x72.png" alt="Logo de la empresa">
+            <p>Contacto: sergiosevarayos@gmail.com</p>
+            <p>Sergio Seva Rayos</p>
+            <p><a href="mailto:sergiosevarayos@gmail.com">Enviar un correo</a></p>
+            <p>© <span id="year"></span> Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <script>
+        // Obtener el elemento del año
+        const yearElement = document.getElementById('year');
+
+        // Obtener el año actual
+        const year = new Date().getFullYear();
+
+        // Insertar el año actual en el elemento del año
+        yearElement.textContent = year;
+
+    </script>
+    <!--Añadido-->
+    <script>
+        // Agrega el script para obtener y mostrar los datos utilizando fetch
+        document.addEventListener("DOMContentLoaded", function () {
+            const produccionTable = document.getElementById('produccionTable');
+            const produccionBody = document.getElementById('produccionBody');
+
+            const userEmailCookie = getCookie("user_email");
+
+            if (userEmailCookie) {
+                fetch(`mostrar_produccion.php?email=${userEmailCookie}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        let content = "";
+
+                        if (data.length > 0) {
+                            data.forEach(item => {
+                                content += `<tr><td>${item.fecha}</td><td>${item.metros_cubicos}</td></tr>`;
+                            });
+                        } else {
+                            content = "<tr><td colspan='2'>No hay registros de producción para este usuario.</td></tr>";
+                        }
+
+                        produccionBody.innerHTML = content;
+                        produccionTable.style.display = 'block';
+                    })
+                    .catch(error => console.error("Error fetching data:", error));
+            }
+        });
+    </script>
+    <!--Añadido-->
+</body>
+
+</html>
