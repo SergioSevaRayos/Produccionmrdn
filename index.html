@@ -1,75 +1,62 @@
 <!DOCTYPE html>
 <html>
+<!--__________________________________________Inicio "HEAD"-->
 
 <head>
     <meta charset="UTF-8">
     <title>Iniciar Sesión</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="media/img/logotipo_127x72.png">
-    <style>
-        /* Estilos para el footer */
-        .footer {
-            background-color: #1a1a1a;
-            color: #e0e0e0;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 0 10px rgb(22, 255, 1);
-        }
-
-        .footer-contenido p {
-            margin: 5px;
-        }
-    </style>
-    <!-- Eliminamos el enlace al archivo styles.css -->
 </head>
+<!--_____________________________________________Fin "HEAD"-->
+
+<!--__________________________________________Inicio "BODY"-->
 
 <body>
-
-    <!-- Barra de navegación -->
-    <div class="navbar">
-        <button onclick="window.location.href='index.html'" class="boton-inicio">Inicio</button>
-        <img src="media/img/logotipo_127x72.png" alt="Logotipo SSR">
-        <button onclick="window.location.href='registro.html'" class="boton-inicio">Registro</button>
-    </div>
-
-    <!-- Contenedor principal -->
-    <div class="contenedor">
-        <h1>Iniciar Sesión</h1>
-        <!-- Contenedor del formulario -->
-        <div class="form-contenedor">
-            <form action="procesar_login.php" method="post">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required><br>
-
-                <label for="contrasena">Contraseña:</label>
-                <input type="password" id="contrasena" name="contrasena" required><br>
-
-                <input type="submit" value="Iniciar Sesión">
-            </form>
-            <!-- Enlace de registro -->
-            <p class="link-regitro">¿No tienes una cuenta? <a href="registro.html">Regístrate aquí</a></p>
+    <div class="cuerpo">
+        <!--___________________________Inicio "Barra de navegación"-->
+        <!---->
+        <div class="navbar">
+            <button onclick="window.location.href='index.html'" class="boton-inicio">Inicio</button>
+            <img src="media/img/logotipo_127x72.png" alt="Logotipo SSR">
+            <button onclick="window.location.href='registro.html'" class="boton-inicio">Registro</button>
         </div>
-    </div>
-    <footer class="footer">
-        <div class="footer-contenido">
+        <!--______________________________Fin "Barra de navegación"-->
+
+        <!--__________________________Inicio "Contenedor principal"-->
+        <div class="contenedor">
+            <h1>Iniciar Sesión</h1>
+            <!-- Contenedor del formulario -->
+            <div class="form-contenedor">
+                <form action="procesar_login.php" method="post">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required><br>
+
+                    <label for="contrasena">Contraseña:</label>
+                    <input type="password" id="contrasena" name="contrasena" required><br>
+
+                    <input type="submit" value="Iniciar Sesión" class="boton-inicio">
+                </form>
+                <!-- Enlace de registro -->
+                <p class="link-regitro">¿No tienes una cuenta? <a href="registro.html">Regístrate aquí</a></p>
+            </div>
+        </div>
+        <!--______________________________Fin "Contenedor principal"-->
+
+        <!--_________________________________________Inicio "footer"-->
+        <footer class="footer">
             <img src="media/img/logotipo_127x72.png" alt="Logo de la empresa">
-            <p>Contacto: sergiosevarayos@gmail.com</p>
-            <p>Sergio Seva Rayos</p>
-            <p><a href="mailto:sergiosevarayos@gmail.com">Enviar un correo</a></p>
+            <p>ssrspaingroup@gmail.com</p>
+            <p><a href="mailto:ssrspaingroup@gmail.com" style="color: red;">Enviar un correo</a></p>
             <p>© <span id="year"></span> Todos los derechos reservados.</p>
-        </div>
-    </footer>
-    <script>
-        // Obtener el elemento del año
-        const yearElement = document.getElementById('year');
+        </footer>
+        <!--__________________________________________Fin "footer"-->
 
-        // Obtener el año actual
-        const year = new Date().getFullYear();
-
-        // Insertar el año actual en el elemento del año
-        yearElement.textContent = year;
-
-    </script>
+        <!--__________________Inicio LLamada al documeto logica.js-->
+        <script src="logica.js"></script>
+        <!--_____________________Fin LLamada al documeto logica.js-->
+    </div>
 </body>
+<!--_____________________________________________Fin "BODY"-->
 
 </html>

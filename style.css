@@ -1,305 +1,200 @@
-/* Resetear estilos predeterminados */
-body, h1, h2, form {
+/* Estilos generales para el cuerpo */
+body {
+    display: block;
+    margin: 0px;
+    background-color: #333;
+}
+
+.cuerpo {
+    font-family: Arial, sans-serif;
+    background-color: #333;
     margin: 0;
     padding: 0;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #252525;
-    color: #e0e0e0;
-}
-
-/* Barra de navegación */
+/* Estilos para la barra de navegación */
 .navbar {
-    background-color: #1a1a1a;
-    box-shadow: 0 0 10px rgb(22, 255, 1);
-    padding: 20px;
     display: flex;
-    justify-content: space-around;
-    gap: 0px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    box-shadow: 0px 0px 10px rgb(0, 0, 0);
+    color: azure;
+    padding: 10px 20px;
+    margin-bottom: 50px;
 }
 
-.navbar a {
-    color: #16ff01;
-    text-decoration: none;
-    margin: 0 20px;
-    font-size: 16px;
-}
-
-/* Estilos para el botón de inicio */
-div > .boton-inicio {
-    background-color: #4c554c;
-    color: #ffffff;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
+.boton-inicio {
+    color: azure;
     cursor: pointer;
-    margin-bottom: 10px;
-    width: 200px;
     font-size: 16px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #333;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 5px;
 }
 
-div > .boton-inicio:hover {
-    background-color: #15f800;
-    box-shadow: 0 0 5px #16ff01;
+/* Estilos para el logotipo en la barra de navegación */
+.navbar img {
+    max-width: 100px;
 }
 
-div > .boton-inicio:active {
-    background-color: #029202;
-    box-shadow: 0 0 2px #16ff01;
-}
-
-/* Contenedor principal */
+/* Estilos para el contenedor principal */
 .contenedor {
+    background-color: black;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgb(0, 0, 0);
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 300px;
+}
+
+.contenedor h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: azure;
+}
+
+/* Estilos para el formulario de inicio de sesión */
+.form-contenedor form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    min-height: 100vh;
 }
 
-/* Contenedor del formulario */
-.form-contenedor {
-    background-color: #252525;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgb(22, 255, 1);
-    width: 300px;
-    display: flex; /* Añadimos Flexbox al contenedor del formulario */
-    flex-direction: column;
-    align-items: center; /* Centramos verticalmente los elementos */
-}
-
-/* Estilo para el contenedor del gráfico */
-.graficos-contenedor {
-    width: 100%;
-    max-width: 400px;
-    height: 200px;
-    margin: 0 auto; /* Para centrar horizontalmente */
-}
-
-/* Estilos para los elementos label e input del formulario */
-form label {
-    flex-basis: 40%; /* Proporción de espacio horizontal */
-    color: #16ff01;
+.form-contenedor label {
+    display: block;
     margin-bottom: 5px;
+    font-weight: bold;
+    color: azure;
 }
 
-form input[type="email"],
-form input[type="password"],
-form input[type="text"],
-form input[type="date"],
-form input[type="number"] {
-    flex-basis: 60%; /* Proporción de espacio horizontal */
-    width: 90%;
-    padding: 8px;
-    border: 1px solid #16ff01;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    background-color: #252525;
-    color: #e0e0e0;
-}
-
-h1 {
-    color: #16ff01;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-label {
-    color: #16ff01;
-    margin-bottom: 5px;
-}
-
-input[type="email"],
-input[type="password"],
-input[type="text"] {
+.form-contenedor input[type="email"],
+.form-contenedor input[type="password"] {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #16ff01;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    background-color: #1a1a1a;
-}
-
-input[type="submit"] {
-    background-color: #16ff01;
-    color: #1a1a1a;
     padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    color: azure;
+    background-color: #333;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.form-contenedor input[type="submit"] {
+    background-color: #333;
+    color: #fff;
     border: none;
+    padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
 }
 
-input[type="submit"]:hover {
-    background-color: #16ff01;
-    color: #000000;
+.form-contenedor p {
+    color: azure;
 }
 
 .link-regitro {
-    text-align: center;
-    margin-top: 20px;
+    margin-top: 15px;
+    font-size: 14px;
 }
 
-.link-regitro a {
-    color: #16ff01;
+
+/* Estilos para el pie de página */
+.footer {
+    text-align: center;
+    padding: 10px;
+    background-color: black;
+    color: #fff;
+    box-shadow: 0px 0px 10px rgb(0, 0, 0);
+    margin-top: 50px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer img {
+    max-width: 50px;
+    margin-bottom: 10px;
+}
+
+.footer a {
+    color: #fff;
     text-decoration: none;
 }
 
-.link-regitro a:hover {
-    color: #16ff01;
+#year {
+    font-weight: bold;
 }
 
-/* Estilos para el nuevo div con los botones */
-.select-contenedor {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 50vh;
-    padding: 15px;
+/* Estilos para el pie de página en orientación horizontal */
+@media (orientation: landscape) {
+    .footer {
+        position: relative;
+        margin-top: 50px;
+        width: 100%;
+    }
 }
 
-.boton {
-    background-color: #4c554c;
-    color: #ffffff;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-bottom: 10px;
-    width: 200px;
-    font-size: 16px;
-}
-
-.boton:hover {
-    background-color: #15f800;
-    color: #000000;
-}
-
-.boton:active {
-    background-color: #029202;
-}
-
-/* Estilos para las tablas */
-.table-style {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.table-style th,
-.table-style td {
-    border: 1px solid #16ff01;
-    padding: 8px;
-    text-align: center;
-}
-
-/* Estilos para el encabezado de la tabla */
-.table-style th {
-    background-color: #1a1a1a;
-    color: #16ff01;
-}
-
-/* Estilos para las filas impares de la tabla */
-.table-style tr:nth-child(odd) {
-    background-color: #252525;
-}
-
-/* Estilos para las filas pares de la tabla */
-.table-style tr:nth-child(even) {
-    background-color: #1a1a1a;
-}
-
-/* Estilos para los botones de histórico y cerrar sesión */
-.boton-historico,
-.boton-cerrar-sesion {
-    width: 100%;
-}
-
-
-/* Estilos para el contenedor de la tabla */
-.tabla-contenedor {
-    width: 100%;
-    max-width: 600px;
-    overflow-x: auto;
-    padding-bottom: 50px;
-}
-
-/* Estilos para el footer */
-.footer {
-    background-color: #1a1a1a;
-    color: #e0e0e0;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 0 10px rgb(22, 255, 1);
-}
-
-.footer-contenido p {
-    margin: 5px;
-}
-
-
-/* Estilos responsive */
-@media screen and (max-width: 576px) {
-    /* Contenedor principal */
-    .contenedor {
+/* Estilos para el pie de página en orientación vertical */
+@media (orientation: portrait) {
+    .boton-inicio {
+        background-color: #333;
+        cursor: pointer;
+        font-size: 45px;
         padding: 10px;
+        margin: 20px;
+        border-radius: 5px;
+    }
+    
+    .contenedor {
+        margin-top: 10vh;
+        min-height:30vh; 
+        min-width:40vh; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
-    /* Contenedor del formulario en pantallas de teléfono */
-    .form-contenedor {
-        width: 100%;
-        max-width: 100%;
+    .contenedor h1 {
+        font-size: 64px;
+    }
+    
+
+    
+    .form-contenedor label {
+        margin-bottom: 15px;
+        font-size: 45px;
+    }
+    
+    .form-contenedor input[type="email"],
+    .form-contenedor input[type="password"] {
+        width: 30vh;
         padding: 20px;
+        margin-bottom: 15px;
+        font-size: 35px;
+    }
+    
+    .form-contenedor input[type="submit"] {
+        height: 100px;
+        width: 400px;
+        font-size: 35px;
+        margin-top: 35px;
     }
 
-    /* Estilos para los elementos label e input del formulario en pantallas de teléfono */
-    form label {
-        flex-basis: 40%;
-        font-size: 14px;
+    .link-regitro {
+        padding-top: 35px;
+        font-size: 45px;
     }
-
-    form input[type="email"],
-    form input[type="password"],
-    form input[type="text"],
-    form input[type="date"],
-    form input[type="number"] {
-        flex-basis: 60%;
-        margin-bottom: 10px;
-        font-size: 14px;
-    }
-
-    /* Estilos para el botón de inicio en pantallas de teléfono */
-    div > .boton-inicio {
+    .footer {
+        position: fixed;
+        bottom: 0;
         width: 100%;
-        font-size: 14px;
+        font-size: 45px;
+    }
+    .footer img{
+        display: none;
     }
 
-    /* Estilos para el nuevo div con los botones en pantallas de teléfono */
-    .select-contenedor {
-        width: 100%;
-        max-width: 100%;
-        padding: 15px;
-    }
-
-    .boton {
-        width: 100%;
-        font-size: 14px;
-    }
-
-    /* Estilos para las tablas en pantallas de teléfono */
-    .table-style {
-        width: 100%;
-        font-size: 14px;
-    }
+    
 }
-
-
