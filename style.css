@@ -2,14 +2,37 @@
 body {
     display: block;
     margin: 0px;
-    background-color: #333;
+    /*background-color: #333;*/
+    background-image: url(media/img/fondoGeneral.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 .cuerpo {
-    font-family: Arial, sans-serif;
-    background-color: #333;
-    margin: 0;
-    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+
+.graficos-contenedor {
+    margin: 20px 0;
+    text-align: center;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: black;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px rgb(0, 253, 21);
+    max-width: 900px;
+}
+
+.graficos-contenedor h2{
+    margin-bottom: 10px;
+    color: azure;
 }
 
 /* Estilos para la barra de navegación */
@@ -17,8 +40,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: black;
-    box-shadow: 0px 0px 10px rgb(0, 0, 0);
+    background-color: rgb(0, 0, 0);
+    box-shadow: 0px 0px 4px rgb(0, 253, 21);
     color: azure;
     padding: 10px 20px;
     margin-bottom: 50px;
@@ -27,11 +50,17 @@ body {
 .boton-inicio {
     color: azure;
     cursor: pointer;
+    border: none;
     font-size: 16px;
-    background-color: #333;
+    background-color: transparent;
     padding: 10px;
     margin: 20px;
-    border-radius: 5px;
+    border-radius: 0px;
+    transition: color 0.3s ease;
+}
+
+.boton-inicio:hover {
+    color: rgb(0, 253, 21);
 }
 
 /* Estilos para el logotipo en la barra de navegación */
@@ -43,11 +72,12 @@ body {
 .contenedor {
     background-color: black;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgb(0, 0, 0);
+    box-shadow: 0px 0px 4px rgb(0, 253, 21);
     padding: 20px;
     margin: 20px auto;
     max-width: 300px;
 }
+
 
 .contenedor h1 {
     font-size: 24px;
@@ -99,6 +129,15 @@ body {
     font-size: 14px;
 }
 
+.graficos-contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: black;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px rgb(0, 253, 21);
+    max-width: 900px;
+}
 
 /* Estilos para el pie de página */
 .footer {
@@ -106,7 +145,7 @@ body {
     padding: 10px;
     background-color: black;
     color: #fff;
-    box-shadow: 0px 0px 10px rgb(0, 0, 0);
+    box-shadow: 0px 0px 4px rgb(0, 253, 21);
     margin-top: 50px;
     position: fixed;
     bottom: 0;
@@ -139,18 +178,19 @@ body {
 /* Estilos para el pie de página en orientación vertical */
 @media (orientation: portrait) {
     .boton-inicio {
-        background-color: #333;
+        background-color: transparent;
         cursor: pointer;
+        border: none;
         font-size: 45px;
         padding: 10px;
         margin: 20px;
         border-radius: 5px;
     }
-    
+
     .contenedor {
         margin-top: 10vh;
-        min-height:30vh; 
-        min-width:40vh; 
+        min-height: 30vh;
+        min-width: 40vh;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -159,14 +199,14 @@ body {
     .contenedor h1 {
         font-size: 64px;
     }
-    
 
-    
+
+
     .form-contenedor label {
         margin-bottom: 15px;
         font-size: 45px;
     }
-    
+
     .form-contenedor input[type="email"],
     .form-contenedor input[type="password"] {
         width: 30vh;
@@ -174,7 +214,7 @@ body {
         margin-bottom: 15px;
         font-size: 35px;
     }
-    
+
     .form-contenedor input[type="submit"] {
         height: 100px;
         width: 400px;
@@ -186,15 +226,17 @@ body {
         padding-top: 35px;
         font-size: 45px;
     }
+
     .footer {
         position: fixed;
         bottom: 0;
         width: 100%;
         font-size: 45px;
     }
-    .footer img{
+
+    .footer img {
         display: none;
     }
 
-    
+
 }
