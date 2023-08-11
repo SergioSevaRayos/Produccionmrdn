@@ -7,6 +7,8 @@
     <title>Iniciar Sesión</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="media/img/logotipo_127x72.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <!--_____________________________________________Fin "HEAD"-->
 
@@ -16,7 +18,7 @@
     <!--___________________________Inicio "Barra de navegación"-->
     <div class="navbar">
         <button onclick="window.location.href='index.html'" class="boton-inicio">Inicio</button>
-        <img src="media/img/logotipo_127x72.png" alt="Logotipo SSR">
+        <img src="media/img/logotipo_171x94.png" alt="Logotipo SSR">
         <button onclick="window.location.href='registro.html'" class="boton-inicio">Registro</button>
     </div>
     <!--______________________________Fin "Barra de navegación"-->
@@ -28,27 +30,32 @@
             <!-- Contenedor del formulario -->
             <div class="form-contenedor">
                 <form action="procesar_login.php" method="post">
-                    <label for="email">Email:</label>
+                    <label for="email">
+                        <i class="fas fa-envelope"></i>
+                        Email:
+                    </label>
                     <input type="email" id="email" name="email" required><br>
-
-                    <label for="contrasena">Contraseña:</label>
+            
+                    <label for="contrasena">
+                        <i class="fas fa-lock"></i>
+                        Contraseña:
+                    </label>
                     <input type="password" id="contrasena" name="contrasena" required><br>
-
+            
                     <input type="submit" value="Iniciar Sesión" class="boton-inicio">
                 </form>
                 <!-- Enlace de registro -->
                 <p class="link-regitro">¿No tienes una cuenta? <a href="registro.html">Regístrate aquí</a></p>
             </div>
+            
         </div>
         <!--______________________________Fin "Contenedor principal"-->
     </div>
     <!--_________________________________________Inicio "footer"-->
     <div class="footer">
         <footer>
-            <img src="media/img/logotipo_127x72.png" alt="Logo de la empresa">
-            <p>ssrspaingroup@gmail.com</p>
-            <p><a href="mailto:ssrspaingroup@gmail.com" style="color: red;">Enviar un correo</a></p>
-            <p>© <span id="year"></span> Todos los derechos reservados.</p>
+            <a href="mailto:ssrspaingroup@gmail.com">Enviar un correo</a> - 
+            © <span id="year"></span> Todos los derechos reservados.
         </footer>
     </div>
     <!--__________________________________________Fin "footer"-->
