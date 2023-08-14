@@ -1,265 +1,351 @@
 /* Estilos generales para el cuerpo */
 * {
     font-family: 'Orbitron', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+body {
+    
+    background-image: url(media/img/fondoGeneral.jpg);
+    display: flex;
+    background-attachment: fixed;
+    justify-content: center;
+    /* Centra el contenido horizontalmente */
+    align-items: center;
+    /* Centra el contenido verticalmente */
+    background-size: cover;
+    /* Ajusta el fondo para cubrir todo el área */
+    background-repeat: no-repeat;
+    /* Evita la repetición del fondo */
+    min-height: 10vh;
+    /* Asegura que el cuerpo sea al menos el 100% de la vista */
 }
 
-body {
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~INDEX.HTML~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*____________________________________________Inicio Organización de la página*/
+.contenedor-index {
+    width: 100%;
+    max-width: 100%;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1fr;
+    /* Solo una columna */
+    grid-template-areas:
+        "navbar"
+        "form-contenedor"
+        "footer";
+}
+
+.navbar {
+    grid-area: navbar;
+    /* Área "navbar" */
+}
+
+.form-contenedor {
+    grid-area: form-contenedor;
+    /* Área "form-contenedor" */
+}
+
+.footer {
+    grid-area: footer;
+    /* Área "footer" */
+}
+
+/*_______________________________________________Fin Organización de la página*/
+/*_______________________________________________Inicio Diseño navbar*/
+.navbar {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    position: fixed;
+    padding: 10px 0;
+    background-color: black;
+    border-bottom: 2px solid aliceblue;
+    transition: 0.3s;
+}
+
+.navbar:hover {
+    border-bottom-color: rgb(82, 79, 252);
+    /* Cambia el color del borde al pasar el puntero por encima */
+}
+
+.navbar img {
+    height: 40px;
+}
+
+.navbar button {
+    background-color: transparent;
+    color: aliceblue;
+    border: none;
+}
+
+.navbar button:hover {
+    color: rgb(82, 79, 252);
+}
+
+/*_______________________________________________Fin Diseño navbar*/
+/*_______________________________________________Inicio formulario*/
+.form-contenedor {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    margin: 0;
-    background-image: url(media/img/fondoGeneral.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    height: 100vh;
-    /* Ajusta el 100% de la altura de la ventana */
+    align-items: center;
+    padding-top: 20vh;
+    font-weight: bold;
+}
+
+.form-contenedor form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-contenedor input {
+    background-color: rgba(128, 128, 128, 0.418);
+    border-radius: 3px;
+    border: solid 1px rgba(6, 28, 158, 0.336);
+    box-shadow: 10px 5px 5px black;
+    width: 300px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.form-contenedor input:hover {
+    border-color: rgb(82, 79, 252);
+
+}
+
+.form-contenedor button {
+    background-color: rgb(0, 0, 0);
+    color: aliceblue;
+    border: solid 1px rgba(6, 28, 158, 0.336);
+    border-radius: 5px;
+    margin: 10px;
+    padding: 5px;
+    font-size: 20px;
+    transition: 0.2s;
+    /* Agrega una transición para suavizar el cambio de color */
+}
+
+.form-contenedor button:hover {
+    background-color: rgb(82, 79, 252);
+    color: black;
+}
+
+/*_______________________________________________Fin formulario*/
+/*_______________________________________________Inicio footer*/
+.footer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    position: fixed;
+    /* Fija el footer en la pantalla */
+    bottom: 0;
+    /* Lo posiciona en la parte inferior */
+    background-color: black;
+    color: aliceblue;
+    border-top: 2px solid aliceblue;
+    padding: 6px;
+}
+
+/*_______________________________________________Fin footer*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~INICIO.HTML~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*____________________________________________Inicio Organización de la página*/
+.contenedor-inicio {
+    width: 100%;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1fr;
+    /* Solo una columna */
+    grid-template-areas:
+        "navbar"
+        "datos-contenedor"
+        "footer";
+}
+
+.navbar,
+.datos-contenedor,
+.footer {
     width: 100%;
 }
 
-.cuerpo {
+
+.navbar {
+    grid-area: navbar;
+    /* Área "navbar" */
+}
+
+.form-contenedor {
+    grid-area: form-contenedor;
+    /* Área "form-contenedor" */
+}
+
+.footer {
+    grid-area: footer;
+    /* Área "footer" */
+}
+/*_______________________________________________Inicio datos*/
+/*_______________________________________________Inicio Usuario*/
+.usuario-conectado{
+    padding-left: 20px;
+    font-weight: bold;
+}
+/*_______________________________________________Fin Usuario*/
+.datos-contenedor {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 80vh;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    font-weight: bold;
 }
-
-.graficos-contenedor {
-    margin: 20px 0;
-    text-align: center;
-    width: 80%;
+.boton-grafico button{
     display: flex;
-    flex-direction: column;
     align-items: center;
-    background-color: black;
-    border-radius: 10px;
-    box-shadow: 0px 0px 4px rgb(0, 253, 21);
-    max-width: 900px;
-}
-
-.graficos-contenedor h2 {
-    margin-bottom: 10px;
-    color: azure;
-}
-
-/* Estilos para la barra de navegación */
-.navbar {
-    font-family: 'Orbitron', sans-serif;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: rgb(0, 0, 0);
-
-    color: azure;
-}
-
-.boton-inicio {
-    color: azure;
+    justify-content: center;
+    background: none;
     cursor: pointer;
+    outline: none;
+    background-color: transparent;
     border: none;
-    font-size: 16px;
-    background-color: transparent;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 0px;
-    transition: color 0.3s ease;
+    padding: 0;
 }
-
-.boton-inicio:hover {
-    color: rgb(0, 253, 21);
+.boton-grafico button i{
+    font-size: 50px; 
+    color:  rgb(0, 0, 0);
+    transition: 0.2s;
+    padding-bottom: 20px;
 }
-
-/* Estilos para el logotipo en la barra de navegación */
-.navbar img {
-    max-width: 70px;
+.boton-grafico button i:hover{
+    color:  rgb(4, 0, 255);
+    
 }
-
-/* Estilos para el contenedor principal */
-.contenedor {
-    background-color: transparent;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 20px auto;
-    width: 80%;
-    /* Ajusta el ancho */
-    max-width: 500px;
-    height: auto;
-    /* Ajusta la altura */
-}
-
-
-
-.contenedor h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: rgb(0, 0, 0);
-}
-
-/* Estilos para el formulario de inicio de sesión */
-.form-contenedor form {
+.inicio-refrigerado,
+.inicio-congelado{
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start; /* Cambio en esta línea */
+    padding: 10px;
 }
 
-.form-contenedor label {
+.grafico-refrigerado,
+.grafico-congelado{
+    background-color: rgba(0, 0, 0, 0.39);
+    color: aliceblue;
+    text-align: center;
+    border-radius: 5px;
+    height: 300px;
+    width: 900px;
+    padding: 0px;
+    margin-bottom: 10vh;
+    opacity: 0;
+    display: none;
+    transition: opacity 0.5s ease-in-out; /
+}
+
+.mostrar-grafico {
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: rgb(0, 0, 0);
+    opacity: 1;
 }
+/*_______________________________________________Fin datos*/
 
-.form-contenedor input[type="email"],
-.form-contenedor input[type="text"],
-.form-contenedor input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    color: azure;
-    background-color: #3333336b;
-    font-weight: bold;
-    border-radius: 7px;
-    text-align: center;
-}
+/*_______________________________________________Fin Organización de la página*/
 
-.form-contenedor input[type="submit"] {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 7px;
-    cursor: pointer;
-}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~RESPONSIBE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/* Estilos para el pie de página en orientación vertical */
+@media (orientation: portrait) {
 
-.form-contenedor p {
-    color: rgb(0, 0, 0);
-    font-weight: bold;
-}
+    /*_______________________________________________Inicio Diseño navbar*/
+    .navbar button {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+        font-size: 40px;
+    }
 
-.link-regitro {
-    margin-top: 15px;
-    font-size: 14px;
-}
+    .navbar img {
+        display: none;
+    }
 
-.graficos-contenedor {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: black;
-    border-radius: 10px;
-    box-shadow: 0px 0px 4px rgb(0, 253, 21);
-    max-width: 900px;
-}
+    /*_______________________________________________Fin Diseño navbar*/
+    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~INDEX.HTML~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    /*_______________________________________________Inicio formulario*/
+    .form-contenedor {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 10vh;
+        font-size: 40px;
 
-/* Estilos para el pie de página */
-.footer {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    bottom: 20px;
-    width: 100%;
-    font-size: 15px;
-    font-weight: bold;
+    }
 
-}
+    .form-contenedor input {
+        height: 50px;
+        width: 800px;
+        font-size: 35px;
+    }
+    /*_______________________________________________Fin formulario*/
+    
+    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~INICIO.HTML~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    /*______________________________________________Inicio Usuario*/
+    .usuario-conectado{
+        padding-left: 20px;
+        font-size: 40px;
+    }
+    /*______________________________________________Fin Usuario*/
+    /*______________________________________________Inicio datos*/
+    .datos-contenedor {
+        font-size: 40px;
+    }
+    .boton-grafico button i{
+        font-size: 250px; 
+    }
 
+    /*______________________________________________Fin datos*/
 
-.footer img {
-    max-width: 50px;
-    margin-bottom: 10px;
-}
-
-.footer a {
-    color: #fff;
-    text-decoration: none;
-}
-
-
-#year {
-    font-weight: bold;
+    /*_______________________________________________Inicio footer*/
+    .footer {
+        width: 100%;
+        font-size: 40px;
+        text-align: center;
+    }
+    /*_______________________________________________Fin footer*/
 }
 
 /* Estilos para el pie de página en orientación horizontal */
 @media (orientation: landscape) {
-    .footer {
-        position: relative;
-
-        margin-top: 50px;
-        width: 100%;
+    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~INDEX.HTML~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    /*_______________________________________________Inicio formulario*/
+    .form-contenedor {
+        padding-top: 4vh;
     }
-}
-
-/* Estilos para el pie de página en orientación vertical */
-@media (orientation: portrait) {
-    .boton-inicio {
-        background-color: transparent;
-        cursor: pointer;
-        border: none;
-        font-size: 45px;
-        padding: 10px;
-        margin: 20px;
-        border-radius: 5px;
-    }
-
-    .contenedor {
-        margin-top: 10vh;
-        min-height: 30vh;
-        min-width: 40vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .contenedor h1 {
-        font-size: 64px;
-    }
-
-
-
-    .form-contenedor label {
-        margin-bottom: 15px;
-        font-size: 45px;
-    }
-
-    .form-contenedor input[type="email"],
-    .form-contenedor input[type="text"],
-    .form-contenedor input[type="password"] {
-        width: 30vh;
-        padding: 20px;
-        margin-bottom: 15px;
-        font-size: 35px;
-    }
-
-    .form-contenedor input[type="submit"] {
-        height: 100px;
-        width: 400px;
-        font-size: 35px;
-        margin-top: 35px;
-    }
-
-    .form-contenedor p {
-        text-align: center;
-        margin-top: 10vh;
-    }
-
-    .link-regitro {
-        padding-top: 35px;
-        font-size: 45px;
-    }
-
-    .footer {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        font-size: 45px;
-        padding: 20px;
-    }
-
-    .footer img {
-        display: none;
-    }
-
-
+    /*_______________________________________________Fin formulario*/
+    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~INICIO.HTML~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 }

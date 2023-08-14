@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Iniciar Sesión</title>
-    
+
     <link rel="icon" type="image/x-icon" href="media/img/logotipo_127x72.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
@@ -14,57 +14,59 @@
 <!--_____________________________________________Fin "HEAD"-->
 
 <!--__________________________________________Inicio "BODY"-->
-
 <body>
-    <!--___________________________Inicio "Barra de navegación"-->
-    <div class="navbar">
-        <button onclick="window.location.href='index.html'" class="boton-inicio">Inicio</button>
-        <img src="media/img/logotipo_171x94.png" alt="Logotipo SSR">
-        <button onclick="window.location.href='registro.html'" class="boton-inicio">Registro</button>
-    </div>
-    <!--______________________________Fin "Barra de navegación"-->
-
-    <!--__________________________Inicio "Contenedor principal"-->
-    <div class="cuerpo">
-        <div class="contenedor">
-            <h1>Iniciar Sesión</h1>
-            <!-- Contenedor del formulario -->
-            <div class="form-contenedor">
-                <form action="procesar_login.php" method="post">
-                    <label for="email">
-                        <i class="fas fa-envelope"></i>
-                        Email:
-                    </label>
-                    <input type="email" id="email" name="email" required><br>
-            
-                    <label for="contrasena">
-                        <i class="fas fa-lock"></i>
-                        Contraseña:
-                    </label>
-                    <input type="password" id="contrasena" name="contrasena" required><br>
-            
-                    <input type="submit" value="Iniciar Sesión" class="boton-inicio">
-                </form>
-                <!-- Enlace de registro -->
-                <p class="link-regitro">¿No tienes una cuenta? <a href="registro.html">Regístrate aquí</a></p>
-            </div>
-            
+    <!--=============================================================================================-->
+    <!--_______________________________Inicio "Contenedor-index"-->
+    <div class="contenedor-index">
+        <!--=============================================================================================-->
+        <!--____________________________Inicio "Barra de navegación"-->
+        <div class="navbar">
+            <button onclick="window.location.href='index.html'" class="boton-inicio">Inicio</button>
+            <img src="media/img/logotipo_171x94.png" alt="Logotipo SSR">
+            <button onclick="window.location.href='registro.html'" class="boton-inicio">Registro</button>
         </div>
-        <!--______________________________Fin "Contenedor principal"-->
-    </div>
-    <!--_________________________________________Inicio "footer"-->
-    <div class="footer">
-        <footer>
-            <a href="mailto:ssrspaingroup@gmail.com">Enviar un correo</a> - 
-            © <span id="year"></span> Todos los derechos reservados.
-        </footer>
-    </div>
-    <!--__________________________________________Fin "footer"-->
+        <!--_______________________________Fin "Barra de navegación"-->
+        <!--=============================================================================================-->
+        <!--________________________________Inicio "form-contenedor"-->
+        <div class="form-contenedor">
+            <h1>Iniciar Sesión</h1>
+            <form action="procesar_login.php" method="post">
+                <label for="email">
+                    <i class="fas fa-envelope"></i>
+                    Email:
+                </label>
+                <input type="email" id="email" name="email" required><br>
 
+                <label for="contrasena">
+                    <i class="fas fa-lock"></i>
+                    Contraseña:
+                </label>
+                <input type="password" id="contrasena" name="contrasena" required><br>
+
+                <!--<input type="submit" value="Iniciar Sesión" class="boton-inicio">-->
+                <button type="submit" value="Iniciar Sesión" class="boton-iniciarses">Iniciar Sesión</button>
+            </form>
+            <!-- Enlace de registro -->
+            <p class="link-regitro">¿No tienes una cuenta? <a href="registro.html">Regístrate aquí</a></p>
+        </div>
+        <!--___________________________________Fin "form-contenedor"-->
+        <!--=============================================================================================-->
+        <!--_________________________________________Inicio "footer"-->
+        <div class="footer">
+            <footer>
+                <a href="mailto:ssrspaingroup@gmail.com">Enviar un correo</a> -
+                © <span id="year"></span> Todos los derechos reservados.
+            </footer>
+        </div>
+        <!--__________________________________________Fin "footer"-->
+        <!--=============================================================================================-->
+    </div>
+    <!--__________________________________Fin "Contenedor-index"-->
+    <!--=============================================================================================-->
     <!--__________________Inicio LLamada al documeto logica.js-->
     <script src="logica.js"></script>
     <!--_____________________Fin LLamada al documeto logica.js-->
+    <!--=============================================================================================-->
 </body>
 <!--_____________________________________________Fin "BODY"-->
-
 </html>

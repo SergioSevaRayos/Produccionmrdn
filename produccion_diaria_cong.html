@@ -16,13 +16,22 @@
         <button onclick="window.location.href='produccion_diaria.html'" class="boton-inicio">Refrigerado</button>
         <img src="media/img/logotipo_171x94.png" alt="Logotipo SSR">
         <button onclick="window.location.href='produccion_diaria_cong.html'" class="boton-inicio">Congelado</button>
-        <button onclick="cerrarSesion()" class="boton">Cerrar Sesión</button>
+        <button onclick="cerrarSesion()" class="boton-inicio">Cerrar Sesión</button>
     </div>
     <br>
     <div id="usuario-conectado" style="display: none;">
         Usuario Conectado: <span id="email-usuario" style="color: #16ff01;"></span>
     </div>
-
+    <!--______________________________Inicio "Contenedor principal"-->
+    <div class="cuerpo">
+        <!--_______________________________________Inicio "Gráfico"-->
+        <div class="graficos-contenedor">
+            <h2>Gráfico Congelado</h2>
+            <canvas id="graficoProduccionCongelado"></canvas>
+        </div>
+        <!--__________________________________________Fin "Gráfico"-->
+    </div>
+    <!--_________________________________Fin "Contenedor principal"-->
     <!-- Contenedor principal -->
     <div class="contenedor">
         <br>
@@ -41,39 +50,39 @@
             </form>
         </div>
         <!-- Espacio para separar el formulario de la tabla -->
-    <br>
-    <!-- Tabla de producción diaria -->
-    <h2>Registros de Producción Diaria Congelado</h2>
-    <div class="tabla-contenedor">
-        <table id="tablaProduccion" class="table-style">
-            <tr>
-                <th>Fecha</th>
-                <th>Metros Cúbicos</th>
-            </tr>
-        </table>
-    </div>
-    <!-- Mostrar la media diaria, mensual y anual del usuario -->
-    <h2>Media del Usuario</h2>
-    <div class="tabla-contenedor">
-        <table class="table-style">
-            <tr>
-                <th>Tipo</th>
-                <th>Media</th>
-            </tr>
-            <tr>
-                <td>Diaria</td>
-                <td id="mediaDiaria"></td>
-            </tr>
-            <tr>
-                <td>Mensual</td>
-                <td id="mediaMensual"></td>
-            </tr>
-            <tr>
-                <td>Anual</td>
-                <td id="mediaAnual"></td>
-            </tr>
-        </table>
-    </div>
+        <br>
+        <!-- Tabla de producción diaria -->
+        <h2>Registros de Producción Diaria Congelado</h2>
+        <div class="tabla-contenedor">
+            <table id="tablaProduccion" class="table-style">
+                <tr>
+                    <th>Fecha</th>
+                    <th>Metros Cúbicos</th>
+                </tr>
+            </table>
+        </div>
+        <!-- Mostrar la media diaria, mensual y anual del usuario -->
+        <h2>Media del Usuario</h2>
+        <div class="tabla-contenedor">
+            <table class="table-style">
+                <tr>
+                    <th>Tipo</th>
+                    <th>Media</th>
+                </tr>
+                <tr>
+                    <td>Diaria</td>
+                    <td id="mediaDiaria"></td>
+                </tr>
+                <tr>
+                    <td>Mensual</td>
+                    <td id="mediaMensual"></td>
+                </tr>
+                <tr>
+                    <td>Anual</td>
+                    <td id="mediaAnual"></td>
+                </tr>
+            </table>
+        </div>
     </div>
     <script>
         // Dentro del evento 'load'
@@ -103,16 +112,16 @@
     </script>
     <script>
         // ...código existente...
-    
+
         document.getElementById('formulario-produccion').addEventListener('submit', function (event) {
             event.preventDefault(); // Evita el envío normal del formulario
-    
+
             const fecha = document.getElementById('fecha').value;
             const metrosCubicos = parseFloat(document.getElementById('metros_cubicos').value);
-    
+
             guardarProduccionEnBaseDeDatos(fecha, metrosCubicos);
         });
-    
+
         // Función para guardar producción en la base de datos
         function guardarProduccionEnBaseDeDatos(fecha, metrosCubicos) {
             // Crear una instancia de XMLHttpRequest para la solicitud AJAX
@@ -124,21 +133,21 @@
                     window.location.href = "inicio.html";
                 }
             };
-            
+
             // Configurar la solicitud
             xhttp.open("POST", "guardar_produccion_cong.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    
+
             // Crear el cuerpo de la solicitud con los datos a enviar
             const requestBody = "fecha=" + fecha + "&metros_cubicos=" + metrosCubicos;
-            
+
             // Enviar la solicitud
             xhttp.send(requestBody);
         }
     </script>
     <script>
 
-       
+
         function cerrarSesion() {
             // Hacer una solicitud AJAX para cerrar la sesión en el servidor
             var xhttp = new XMLHttpRequest();
@@ -157,7 +166,7 @@
     </script>
     <div class="footer">
         <footer>
-            <a href="mailto:ssrspaingroup@gmail.com">Enviar un correo</a> - 
+            <a href="mailto:ssrspaingroup@gmail.com">Enviar un correo</a> -
             © <span id="year"></span> Todos los derechos reservados.
         </footer>
     </div>

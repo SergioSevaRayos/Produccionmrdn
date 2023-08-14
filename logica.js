@@ -55,3 +55,159 @@ function getCookie(name) {
 //_____________________________________________Fin Almacenar usuario cookie
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//__________________________________Inicio Almacenar producción refrigerado
+document.getElementById('formulario-produccion').addEventListener('submit', function (event) {
+    event.preventDefault(); // Evita el envío normal del formulario
+
+    const fecha = document.getElementById('fecha').value;
+    const metrosCubicos = parseFloat(document.getElementById('metros_cubicos').value);
+
+    guardarProduccionEnBaseDeDatos(fecha, metrosCubicos);
+});
+
+// Función para guardar producción en la base de datos
+function guardarProduccionEnBaseDeDatos(fecha, metrosCubicos) {
+    // Crear una instancia de XMLHttpRequest para la solicitud AJAX
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            // La respuesta del servidor ha sido exitosa
+            window.location.href = "inicio.html";
+        }
+    };
+
+    // Configurar la solicitud
+    xhttp.open("POST", "guardar_produccion.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    // Crear el cuerpo de la solicitud con los datos a enviar
+    const requestBody = "fecha=" + fecha + "&metros_cubicos=" + metrosCubicos;
+
+    // Enviar la solicitud
+    xhttp.send(requestBody);
+}
+//_____________________________________Fin Almacenar producción refrigerado
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//______________________________Inicio Obtener producción refrigerado tabla
+document.addEventListener("DOMContentLoaded", function () {
+    const produccionTable = document.getElementById('produccionTable');
+    const produccionBody = document.getElementById('produccionBody');
+
+    const userEmailCookie = getCookie("user_email");
+
+    if (userEmailCookie) {
+        fetch(`mostrar_produccion.php?email=${userEmailCookie}`)
+            .then(response => response.json())
+            .then(data => {
+                let content = "";
+
+                if (data.length > 0) {
+                    data.forEach(item => {
+                        content += `<tr><td>${item.fecha}</td><td>${item.metros_cubicos}</td></tr>`;
+                    });
+                } else {
+                    content = "<tr><td colspan='2'>No hay registros de producción para este usuario.</td></tr>";
+                }
+
+                produccionBody.innerHTML = content;
+                produccionTable.style.display = 'block';
+            })
+            .catch(error => console.error("Error fetching data:", error));
+    }
+});
+//_________________________________Fin Obtener producción refrigerado tabla
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//____________________________Inicio Obtener producción refrigerado gráfico
+document.addEventListener("DOMContentLoaded", function () {
+    const produccionTable = document.getElementById('produccionTable');
+    const produccionBody = document.getElementById('produccionBody');
+    const graficoCanvas = document.getElementById('graficoProduccionRefrigerado').getContext('2d');
+
+    const userEmailCookie = getCookie("user_email");
+
+    if (userEmailCookie) {
+        fetch(`mostrar_produccion.php?email=${userEmailCookie}`)
+            .then(response => response.json())
+            .then(data => {
+                let content = "";
+
+                if (data.length > 0) {
+                    data.forEach(item => {
+                        content += `<tr><td>${item.fecha}</td><td>${item.metros_cubicos}</td></tr>`;
+                    });
+
+                    // Crear un array separado para las fechas y los valores
+                    const fechas = data.map(item => item.fecha);
+                    const valores = data.map(item => item.metros_cubicos);
+
+                    // Crear y renderizar el gráfico
+                    new Chart(graficoCanvas, {
+                        type: 'bar',
+                        data: {
+                            labels: fechas,
+                            datasets: [{
+                                label: 'Producción (metros cúbicos)',
+                                data: valores,
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+
+                } else {
+                    content = "<tr><td colspan='2'>No hay registros de producción para este usuario.</td></tr>";
+                }
+
+                produccionBody.innerHTML = content;
+                produccionTable.style.display = 'block';
+            })
+            .catch(error => console.error("Error fetching data:", error));
+    }
+});
+
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+//_______________________________Fin Obtener producción refrigerado gráfico
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//________________________________________________Inicio Animación gráficos
+function toggleRefrigerado() {
+    const graficoRefrigerado = document.querySelector(".grafico-refrigerado");
+    anime({
+        targets: graficoRefrigerado,
+        opacity: graficoRefrigerado.classList.contains("mostrar-grafico") ? 0 : 1,
+        duration: 5,
+        easing: 'easeInOutQuad'
+    });
+    graficoRefrigerado.classList.toggle("mostrar-grafico");
+}
+
+function toggleCongelado() {
+    const graficoCongelado = document.querySelector(".grafico-congelado");
+    anime({
+        targets: graficoCongelado,
+        opacity: graficoCongelado.classList.contains("mostrar-grafico") ? 0 : 1,
+        duration: 5,
+        easing: 'easeInOutQuad'
+    });
+    graficoCongelado.classList.toggle("mostrar-grafico");
+}
+//___________________________________________________Fin Animación gráficos
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
