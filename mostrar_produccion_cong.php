@@ -1,18 +1,42 @@
 <?php
-// Incluye el código de autenticación
-include 'verificar_sesion.php';
+// Iniciar sesión para manejar variables de sesión
+session_start();
 
-// Aquí puedes realizar la conexión a la base de datos y obtener los datos de producción para el usuario conectado
+// Incluir el archivo de configuración de la base de datos
+include 'db_config.php';
 
-// Ejemplo de datos de producción en formato JSON
-$produccion_diaria = [
-    ['fecha' => '2023-08-01', 'metros_cubicos' => 50],
-    ['fecha' => '2023-08-02', 'metros_cubicos' => 70],
-    ['fecha' => '2023-08-03', 'metros_cubicos' => 90],
-];
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-// Devuelve los datos en formato JSON
-header('Content-Type: application/json');
-echo json_encode(['produccion_diaria' => $produccion_diaria]);
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
+}
+
+// Obtener el email del usuario que inició sesión desde la cookie
+$userEmail = $_COOKIE['user_email'];
+
+// Consulta SQL para obtener el usuario_id correspondiente al correo electrónico
+$getUserIDSql = "SELECT id FROM usuarios WHERE email = '$userEmail'";
+$userIDResult = $conn->query($getUserIDSql);
+
+if ($userIDResult->num_rows > 0) {
+    $row = $userIDResult->fetch_assoc();
+    $usuario_id = $row['id'];
+
+    // Consulta SQL para obtener los datos de producción del usuario
+    $produccionSql = "SELECT fecha, metros_cubicos FROM produccion_diariacong WHERE usuario_id = $usuario_id";
+    $produccionResult = $conn->query($produccionSql);
+}
+
+if ($produccionResult->num_rows > 0) {
+    $data = array();
+    while ($row = $produccionResult->fetch_assoc()) {
+        $data[] = $row;
+    }
+    $dataJson = json_encode($data);
+    echo $dataJson;
+} else {
+    echo json_encode(array()); // Si no hay datos, devuelve un array JSON vacío
+}
+
+$conn->close();
 ?>
-

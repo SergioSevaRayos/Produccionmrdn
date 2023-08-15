@@ -4,8 +4,9 @@
     margin: 0;
     padding: 0;
 }
+
 body {
-    
+
     background-image: url(media/img/fondoGeneral.jpg);
     display: flex;
     background-attachment: fixed;
@@ -89,12 +90,14 @@ body {
 
 /*_______________________________________________Fin Diseño navbar*/
 /*_______________________________________________Inicio formulario*/
+
+
 .form-contenedor {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 20vh;
+    margin-top: 10vh;
     font-weight: bold;
 }
 
@@ -162,8 +165,9 @@ body {
 /*____________________________________________Inicio Organización de la página*/
 .contenedor-inicio {
     width: 100%;
+    height: 100%;
     display: grid;
-    grid-gap: 20px;
+    grid-gap: 10vh;
     grid-template-columns: 1fr;
     /* Solo una columna */
     grid-template-areas:
@@ -193,74 +197,103 @@ body {
     grid-area: footer;
     /* Área "footer" */
 }
+
 /*_______________________________________________Inicio datos*/
 /*_______________________________________________Inicio Usuario*/
-.usuario-conectado{
+.usuario-conectado {
+    margin-top: 4vh;
     padding-left: 20px;
     font-weight: bold;
 }
+
+.usuario-conectado span {
+    color: red;
+    font-weight: bold;
+}
+
 /*_______________________________________________Fin Usuario*/
 .datos-contenedor {
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     padding-top: 10vh;
     padding-bottom: 10vh;
     font-weight: bold;
 }
-.boton-grafico button{
+
+.canvasRefr {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: none;
-    cursor: pointer;
-    outline: none;
-    background-color: transparent;
-    border: none;
-    padding: 0;
+    text-align: center;
+    height: 300px;
+    width: 600px;
+    margin-bottom: 50px;
 }
-.boton-grafico button i{
-    font-size: 50px; 
-    color:  rgb(0, 0, 0);
-    transition: 0.2s;
-    padding-bottom: 20px;
+
+.canvasCong {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 300px;
+    width: 600px;
+    margin-bottom: 50px;
 }
-.boton-grafico button i:hover{
-    color:  rgb(4, 0, 255);
-    
+
+/*_______________________________________________Fin datos*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~REFRIGERADO.HTML~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.cuerpo>.canvasRefr {
+    width: 100%;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
-.inicio-refrigerado,
-.inicio-congelado{
+
+.prod-contenedor {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Cambio en esta línea */
-    padding: 10px;
+    margin-top: 0vh;
+    font-weight: bold;
 }
 
-.grafico-refrigerado,
-.grafico-congelado{
-    background-color: rgba(0, 0, 0, 0.39);
-    color: aliceblue;
+.prod-contenedor form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.prod-contenedor input {
+    background-color: rgba(128, 128, 128, 0.418);
+    border-radius: 3px;
+    border: solid 1px rgba(6, 28, 158, 0.336);
+    box-shadow: 10px 5px 5px black;
+    width: 300px;
     text-align: center;
-    border-radius: 5px;
-    height: 300px;
-    width: 900px;
-    padding: 0px;
-    margin-bottom: 10vh;
-    opacity: 0;
-    display: none;
-    transition: opacity 0.5s ease-in-out; /
+    font-weight: bold;
 }
 
-.mostrar-grafico {
-    display: block;
-    opacity: 1;
+.tabla-contenedor {
+    width: 100%;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
-/*_______________________________________________Fin datos*/
 
 /*_______________________________________________Fin Organización de la página*/
 
@@ -274,7 +307,6 @@ body {
     .navbar button {
         width: 100%;
         display: flex;
-        justify-content: space-between;
         justify-content: center;
         align-items: center;
         padding: 15px;
@@ -305,23 +337,44 @@ body {
         width: 800px;
         font-size: 35px;
     }
+
     /*_______________________________________________Fin formulario*/
-    
+
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~INICIO.HTML~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     /*______________________________________________Inicio Usuario*/
-    .usuario-conectado{
+    .usuario-conectado {
+        margin-top: 6vh;
         padding-left: 20px;
+        margin-bottom: 20px;
+        font-weight: bold;
         font-size: 40px;
     }
+
     /*______________________________________________Fin Usuario*/
     /*______________________________________________Inicio datos*/
     .datos-contenedor {
-        font-size: 40px;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-top: 0vh;
+        padding-bottom: 70px;
+        font-weight: bold;
+        font-size: 50px;
     }
-    .boton-grafico button i{
-        font-size: 250px; 
+
+    .canvasCong {
+        height: 300px;
+        width: 800px;
+    }
+
+    .canvasRefr {
+        padding-bottom: 10vh;
+        height: 300px;
+        width: 800px;
     }
 
     /*______________________________________________Fin datos*/
@@ -329,14 +382,30 @@ body {
     /*_______________________________________________Inicio footer*/
     .footer {
         width: 100%;
+        font-size: 20px;
+        text-align: center;
+    }
+    .prod-contenedor{
+        font-size: 60px;
+    }
+    .prod-contenedor input{
+        width: 600px;
+        height: 60px;
         font-size: 40px;
         text-align: center;
     }
+    .cuerpo .canvasRefr{
+        height: 300px;
+        width: 800px;
+    }
+
+
     /*_______________________________________________Fin footer*/
 }
 
 /* Estilos para el pie de página en orientación horizontal */
 @media (orientation: landscape) {
+
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~INDEX.HTML~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -344,8 +413,30 @@ body {
     .form-contenedor {
         padding-top: 4vh;
     }
+
+    .datos-contenedor {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding-top: 0vh;
+        margin: 20px;
+        padding-bottom: 70px;
+        font-weight: bold;
+        font-size: 30px;
+    }
+
     /*_______________________________________________Fin formulario*/
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~INICIO.HTML~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    /*_______________________________________________Inicio footer*/
+    .footer {
+        min-width: 100%;
+        font-size: 20px;
+    }
+
+    /*_______________________________________________Fin footer*/
+
 }
