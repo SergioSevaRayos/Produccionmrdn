@@ -304,6 +304,13 @@ body {
     font-size: 12px;
     border: 2px solid #fffb00;
 }
+.incidencias .botInc{
+    transition: 0.3s;
+    border-radius: 5px;
+}
+.botInc:hover{
+    background-color: rgb(82, 79, 252);
+}
 
 /*_______________________________________________Fin datos*/
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -485,6 +492,15 @@ body {
         font-weight: bold;
         font-size: 40px;
     }
+    .botInc{
+        width: 850px;
+        height: 100px;
+    }
+    .incidencias .botInc{
+        border-radius: 23px;
+        font-size: 55px;
+    }
+    
 
 
     /*_______________________________________________Fin footer*/

@@ -24,8 +24,11 @@ if ($userIDResult->num_rows > 0) {
     $row = $userIDResult->fetch_assoc();
     $usuario_id = $row['id'];
 
+    // Obtener la fecha actual en formato SQL (timestamp)
+    $fecha = date('Y-m-d H:i:s');
+
     // Consulta SQL para insertar la incidencia en la base de datos
-    $insertSql = "INSERT INTO incidencias (usuario_id, descripcion) VALUES ($usuario_id, '$descripcion')";
+    $insertSql = "INSERT INTO incidencias (usuario_id, descripcion, fecha) VALUES ($usuario_id, '$descripcion', '$fecha')";
 
     if ($conn->query($insertSql) === TRUE) {
         echo "Incidencia introducida correctamente.";
@@ -38,3 +41,4 @@ if ($userIDResult->num_rows > 0) {
 
 $conn->close();
 ?>
+
