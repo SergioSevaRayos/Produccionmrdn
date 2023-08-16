@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert@2.1.2/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <!--_____________________________________________________Fin "HEAD"-->
 
@@ -110,8 +112,8 @@
                             datasets: [{
                                 label: "Producción Diaria (Metros Cúbicos)",
                                 data: metrosCubicos,
-                                backgroundColor: "rgba(0, 69, 138, 0.2)",
-                                borderColor: "rgba(0, 69, 138, 1)",
+                                backgroundColor: "rgba(255, 255, 255, 0.9)",
+                                borderColor: "rgba(255, 0, 0, 1)",
                                 borderWidth: 2
                             }]
                         },
@@ -136,8 +138,67 @@
                 xhrCongelado.send();
             </script>
             <!--_______________________________Fin script para crear canvas-->
+            <!--__________________________________________Fin "Congelado"-->
         </div>
-        <!--__________________________________________Fin "Congelado"-->
+        <!--_______________________________________Inicio incidencias-->
+        <div class="incidencias">
+            <button id="openModal">Introducir incidencia</button>
+            <h2>Incidencias</h2>
+        </div>
+
+        <script>
+            document.getElementById("openModal").addEventListener("click", function () {
+                swal({
+                    title: "Introducir incidencia",
+                    text: "Por favor, introduce los detalles de la incidencia:",
+                    content: {
+                        element: "input",
+                        attributes: {
+                            placeholder: "Descripción de la incidencia",
+                            type: "text"
+                        }
+                    },
+                    buttons: {
+                        confirm: {
+                            text: "Enviar",
+                            value: true,
+                            visible: true,
+                            closeModal: true
+                        },
+                        cancel: {
+                            text: "Cancelar",
+                            value: null,
+                            visible: true,
+                            closeModal: true
+                        }
+                    }
+                }).then(function (value) {
+                    if (value) {
+                        var descripcion = value; // Obtén la descripción de la incidencia
+
+                        // Envia los datos al archivo PHP utilizando AJAX y jQuery
+                        $.ajax({
+                            type: "POST",
+                            url: "insertar_incidencia.php",
+                            data: {
+                                descripcion: descripcion
+                            },
+                            success: function (response) {
+                                console.log(response); // Muestra la respuesta del servidor en la consola
+                                swal("Incidencia introducida", response);
+                            },
+                            error: function (xhr, status, error) {
+                                console.error(error); // Muestra el error en la consola
+                                swal("Error al introducir la incidencia");
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
+        <!--__________________________________________Fin incidencias-->
+        
+
         <!--____________________________________________Inicio "footer"-->
         <div class="footer">
             <footer>
