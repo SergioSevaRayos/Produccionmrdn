@@ -144,7 +144,15 @@
         <div class="incidencias">
             <button id="openModal" class="botInc">Introducir incidencia</button>
             <h2>Incidencias</h2>
+            <div id="historico" class="historico-incidencias">
+                <!-- Aquí se cargarán las incidencias -->
+            </div>
         </div>
+        <!--Obtener incidencias-->
+        <script>
+
+
+        </script>
 
         <script>
             document.getElementById("openModal").addEventListener("click", function () {
@@ -194,10 +202,49 @@
                         });
                     }
                 });
+                cargarHistoricoIncidencias();
             });
+            function cargarHistoricoIncidencias() {
+                var historicoContainer = document.getElementById("historico");
+
+                // Limpia el contenido previo
+                historicoContainer.innerHTML = "";
+
+                // Realiza una llamada AJAX para obtener las incidencias desde la base de datos
+                $.ajax({
+                    url: "obtener_incidencias.php",
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        data.forEach(function (incidencia) {
+                            // Crea un botón para cada incidencia y agrega un evento click para mostrar la descripción
+                            var botonIncidencia = document.createElement("button");
+                            botonIncidencia.innerText = new Date(incidencia.fecha).toLocaleString(); // Formatea la fecha
+                            botonIncidencia.classList.add("boton-incidencia");
+
+                            botonIncidencia.addEventListener("click", function () {
+                                // Muestra la descripción en una ventana modal
+                                swal({
+                                    title: "Incidencia del " + new Date(incidencia.fecha).toLocaleString(),
+                                    text: incidencia.descripcion,
+                                    icon: "info",
+                                });
+                            });
+
+                            historicoContainer.appendChild(botonIncidencia);
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            }
+
+            // Carga el histórico cuando se carga la página
+            cargarHistoricoIncidencias();
         </script>
         <!--__________________________________________Fin incidencias-->
-        
+
 
         <!--____________________________________________Inicio "footer"-->
         <div class="footer">
