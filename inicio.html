@@ -194,6 +194,7 @@
                             success: function (response) {
                                 console.log(response); // Muestra la respuesta del servidor en la consola
                                 swal("Incidencia introducida", response);
+                                location.reload();
                             },
                             error: function (xhr, status, error) {
                                 console.error(error); // Muestra el error en la consola
