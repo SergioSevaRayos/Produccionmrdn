@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+// Establecer la zona horaria a Madrid
+date_default_timezone_set('Europe/Madrid');
+
 // Incluir el archivo de configuración de la base de datos
 include 'db_config.php';
 
@@ -24,7 +27,7 @@ if ($userIDResult->num_rows > 0) {
     $row = $userIDResult->fetch_assoc();
     $usuario_id = $row['id'];
 
-    // Obtener la fecha actual en formato SQL (timestamp)
+    // Obtener la fecha y hora actual en formato SQL (timestamp)
     $fecha = date('Y-m-d H:i:s');
 
     // Consulta SQL para insertar la incidencia en la base de datos

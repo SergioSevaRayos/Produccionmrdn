@@ -21,7 +21,7 @@
             <button onclick="cerrarSesion()" class="boton-inicio">Cerrar</button>
         </div>
         <!--__________________________________Fin "Barra de navegación"-->
-        <br>
+
         <!--_________________________________Inicio "Usuario conectado"-->
         <div id="usuario-conectado" class="usuario-conectado">
             Usuario: <span id="email-usuario"></span>
@@ -49,7 +49,8 @@
             <!--_______________________________________Inicio "Refrigerado"-->
             <div class="canvasRefr">
                 <h2>Refrigerado</h2>
-                <canvas id="grafico-produccion" width="600" height="300"></canvas>
+                <canvas id="grafico-produccion"></canvas>
+                <p>Media Diaria <span id="media-diaria" style="font-size: 65px;">23</span></p>
             </div>
             <!--_______________________________________________________________REFRIGERADO-->
             <!--____________________________Inicio script para crear canvas-->
@@ -64,6 +65,7 @@
                     });
 
                     var ctx = document.getElementById("grafico-produccion").getContext("2d");
+                    let delayed;
                     var myChartRefrigerado = new Chart(ctx, {
                         type: "bar",
                         data: {
@@ -77,9 +79,21 @@
                             }]
                         },
                         options: {
+                            animation: {
+                                onComplete: () => {
+                                    delayed = true;
+                                },
+                                delay: (context) => {
+                                    let delay = 0;
+                                    if (context.type === 'data' && context.mode === 'default' && !delayed) {
+                                        delay = context.dataIndex * 100 + context.datasetIndex * 50;
+                                    }
+                                    return delay;
+                                },
+                            },
                             scales: {
                                 y: {
-                                    beginAtZero: true
+                                    stacked: true
                                 }
                             }
                         }
@@ -97,6 +111,38 @@
                 xhrRefrigerado.send();
             </script>
             <!--_______________________________Fin script para crear canvas-->
+            <script>
+                // Función para calcular la media diaria
+                function calcularMediaDiaria(data) {
+                    if (data.length > 0) {
+                        var totalProduccion = data.reduce(function (sum, item) {
+                            return sum + parseFloat(item.metros_cubicos);
+                        }, 0);
+                        var mediaDiaria = totalProduccion / data.length;
+                        return mediaDiaria.toFixed(2) + " m³";
+                    } else {
+                        return "No hay datos disponibles";
+                    }
+                }
+
+                // Obtener el elemento HTML para mostrar la media diaria
+                const mediaDiariaElement = document.getElementById('media-diaria');
+
+                var xhrRefrigerado = new XMLHttpRequest();
+                xhrRefrigerado.open("GET", "mostrar_produccion.php", true);
+                xhrRefrigerado.onreadystatechange = function () {
+                    if (xhrRefrigerado.readyState === 4 && xhrRefrigerado.status === 200) {
+                        var produccionData = JSON.parse(xhrRefrigerado.responseText);
+                        generateChartRefrigerado(produccionData);
+
+                        // Calcular y mostrar la media diaria
+                        const mediaDiaria = calcularMediaDiaria(produccionData);
+                        mediaDiariaElement.textContent = mediaDiaria;
+                    }
+                };
+                xhrRefrigerado.send();
+            </script>
+
             <!--__________________________________________Fin "Refrigerado"-->
         </div>
         <!--_________________________________Fin "Contenedor principal"-->

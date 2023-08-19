@@ -7,7 +7,8 @@
 
 body {
 
-    background-image: url(media/img/fondoGeneral.jpg);
+    /* background-image: url(media/img/fondoGeneral.jpg); */
+    background-color: rgba(50, 50, 65, 0.918);
     display: flex;
     background-attachment: fixed;
     justify-content: center;
@@ -21,6 +22,7 @@ body {
     min-height: 10vh;
     /* Asegura que el cuerpo sea al menos el 100% de la vista */
 }
+
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~INDEX.HTML~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -68,9 +70,26 @@ body {
     border-bottom: 2px solid aliceblue;
     transition: 0.3s;
 }
+.contenedor{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    position: fixed;
+    padding-top: 500px;
+}
+.contenedor .navbar{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    position: fixed;
 
+}
 .navbar:hover {
-    border-bottom-color: rgb(82, 79, 252);
+    border-bottom-color: rgb(255, 0, 0);
     /* Cambia el color del borde al pasar el puntero por encima */
 }
 
@@ -97,7 +116,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 10vh;
+    margin-top: 14vh;
     font-weight: bold;
 }
 
@@ -167,7 +186,7 @@ body {
     width: 100%;
     height: 100%;
     display: grid;
-    grid-gap: 10vh;
+    grid-gap: 1vh;
     grid-template-columns: 1fr;
     /* Solo una columna */
     grid-template-areas:
@@ -234,22 +253,15 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     text-align: center;
-    height: 300px;
-    width: 600px;
-    margin-bottom: 50px;
 }
 
 .canvasCong {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     text-align: center;
-    height: 300px;
-    width: 600px;
-    margin-bottom: 50px;
+    
 }
 
 .incidencias {
@@ -259,6 +271,7 @@ body {
     justify-content: center;
     text-align: center;
     font-size: 30px;
+    padding-top: 57px;
 
 }
 
@@ -266,10 +279,6 @@ body {
     padding-bottom: 20px;
 }
 
-.incidencias button {
-    font-weight: bold;
-    font-size: 20px;
-}
 
 .swal-overlay {
     background-color: rgba(0, 0, 0, 0.815);
@@ -310,7 +319,11 @@ body {
 
 .incidencias .botInc {
     transition: 0.3s;
-    border-radius: 5px;
+    border-radius: 10px;
+    font-size: 20px;
+    background-color: rgb(0, 0, 0);
+    color: aliceblue;
+    padding: 10px;
 }
 
 .botInc:hover {
@@ -321,31 +334,75 @@ body {
     display: block;
     margin-bottom: 10px;
     padding: 5px 10px;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #000000e0;
+    border: 6px solid #000000;
     cursor: pointer;
+    font-weight: bold;
+    color: aliceblue;
+    height: 71px;
+    width: 325px;
+    font-size: 23px;
 }
 
 /* Estilos para organizar en columnas */
 .historico-incidencias {
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    width: 100vw;
     gap: 10px;
+    padding-bottom: 107px;
+
 }
 
 /*_______________________________________________Fin datos*/
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~REFRIGERADO.HTML~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-.cuerpo>.canvasRefr {
+.cuerpo {
     width: 100%;
-    padding-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
 }
+.canvasRefr{
+    height: 220px;
+    width: 500px;
+}
+.canvasCong{
+    height: 220px;
+    width: 500px;
+}
+.canvasRefr > h2{
+    height: auto;
+    width: auto;
+}
+.canvasRefr > p{
+    font-size: 20px;
+    padding-bottom: 50px;
+}
+.canvasRefr > h2 > span{
+    height:500px;
+    width: 500px;
+}
+.canvasCong > p{
+    font-size: 20px;
+    padding-bottom: 50px;
+}
+.canvasCong > h2 > span{
+    height:500px;
+    width: 500px;
+}
+
+
+
+
 
 .prod-contenedor {
     width: 100%;
@@ -382,6 +439,23 @@ body {
     justify-content: center;
     text-align: center;
 }
+.indatos input{
+    background-color: rgba(128, 128, 128, 0.418);
+    border-radius: 3px;
+    border: solid 1px rgba(6, 28, 158, 0.336);
+    box-shadow: 10px 5px 5px black;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    margin: 10px;
+}
+.horcong{
+    font-size: 50px;
+    font-weight: bolder;
+}
+.hmes{
+    font-weight: bold;
+}
 
 /*_______________________________________________Fin Organización de la página*/
 
@@ -404,6 +478,11 @@ body {
     .navbar img {
         display: none;
     }
+    .contenedor{
+        padding-top: 10px;
+        margin-top: 0px;
+        
+    }
 
     /*_______________________________________________Fin Diseño navbar*/
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -415,7 +494,7 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding-top: 10vh;
+        padding-top: 50vh;
         font-size: 40px;
 
     }
@@ -433,7 +512,7 @@ body {
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     /*______________________________________________Inicio Usuario*/
     .usuario-conectado {
-        margin-top: 6vh;
+        margin-top: 120px;
         padding-left: 20px;
         margin-bottom: 20px;
         font-weight: bold;
@@ -453,16 +532,68 @@ body {
         font-weight: bold;
         font-size: 30px;
     }
-
+    .prod-contenedor{
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-top: 0vh;
+        padding-bottom: 10px;
+        font-weight: bold;
+        font-size: 30px;
+    }
+    
     .canvasCong {
-        height: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        height: 400px;
+        width: 800px;
+        padding-top: 100px;
+    }
+
+    .canvasCong canvas{
+        height: 400px;
         width: 800px;
     }
 
-    .canvasRefr {
-        padding-bottom: 10vh;
-        height: 300px;
+    .canvasRefr canvas{
+        height: 400px;
         width: 800px;
+    }
+
+    .canvasRefr{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        height: 400px;
+        width: 800px;
+    }
+    
+
+    .canvasCong h2 {
+        text-align: center;
+        width: 100%;
+        font-size: 70px;
+    }
+
+    .canvasRefr h2 {
+        text-align: center;
+        width: 100%;
+        font-size: 70px;
+    }
+
+    #grafico-produccion {
+        width: 100%;
+        max-width: 100%; /* Para asegurarse de que no exceda el ancho de la pantalla */
+    }
+    
+    #grafico-produccion {
+        width: 100%;
+        max-width: 100%; /* Para asegurarse de que no exceda el ancho de la pantalla */
     }
 
     /*______________________________________________Fin datos*/
@@ -534,10 +665,49 @@ body {
     .boton-incidencia {
         width: 100%;
         height: 100px;
+        background-color: #000000e0;
+        border: 6px solid #000000;
+        font-size: 49px;
     }
 
 
     /*_______________________________________________Fin footer*/
+    .canvasRefr > p {
+        font-size: 40px;
+    }
+    .canvasRefr > span{
+        font-size: 80px;
+        font-weight: bold;
+    }
+    .indatos{
+        padding-top: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 49px;
+    }
+    .indatos input{
+        
+        font-size: 49px;
+    }
+
+    .horas-introducidas{
+        padding-top: 50px;
+    }
+    .horas-introducidas p{
+        padding-top: 50px;
+    }
+    .horas p {
+        font-size: 29px;
+    }
+    .horas p > span{
+        font-size: 59px;
+    }
+    .horas-introducidas h3{
+        font-size: 49px;
+    }
+    
 }
 
 /* Estilos para el pie de página en orientación horizontal */
@@ -550,7 +720,7 @@ body {
     .form-contenedor {
         padding-top: 4vh;
     }
-
+    
     .datos-contenedor {
         width: 100%;
         display: flex;
@@ -564,6 +734,9 @@ body {
         font-size: 30px;
     }
 
+    .usuario-conectado {
+        margin-top: 14vh;
+    }
     /*_______________________________________________Fin formulario*/
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~INICIO.HTML~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
