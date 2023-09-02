@@ -124,9 +124,35 @@ document.addEventListener("DOMContentLoaded", function () {
 //_______________________________Fin Obtener producción refrigerado gráfico
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-//________________________________________________Inicio Animación gráficos
+//________________________________________________Inicio Calendario
+document.addEventListener('DOMContentLoaded', function () {
+    var calendarEl = document.getElementById('calendario');
+    var modelos = document.querySelectorAll('input[name="modelo"]');
 
-//___________________________________________________Fin Animación gráficos
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        selectable: true, // Permite seleccionar fechas
+        locale: 'es', // Configura el idioma en español
+        firstDay: 1, // Establece el primer día de la semana en lunes (1)
+        select: function (info) {
+            // Obtiene el modelo seleccionado
+            var modeloSeleccionado = document.querySelector('input[name="modelo"]:checked');
+
+            if (modeloSeleccionado) {
+                var selectedModelClass = modeloSeleccionado.value;
+
+                // Aplica la clase del modelo seleccionado a la casilla
+                var cell = info.dayEl;
+                cell.classList.add(selectedModelClass);
+            } else {
+                alert("Selecciona un modelo antes de aplicarlo a la casilla.");
+            }
+        }
+    });
+
+    calendar.render();
+});
+//___________________________________________________Fin Calendario
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 

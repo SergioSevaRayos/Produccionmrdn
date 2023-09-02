@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<!--_________________________________________________Inicio "HEAD"-->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tipo de Producción</title>
+    <link rel="icon" type="image/x-icon" href="media/img/logotipo_127x72.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert@2.1.2/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!--Inicio Librería calendario-->
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.css' rel='stylesheet' />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.js'></script>
+    <!--Fin librería calendario-->
+    <link rel="stylesheet" href="style.css">
+</head>
+<!--_____________________________________________________Fin "HEAD"-->
+
+<!--__________________________________________________Inicio "BODY"-->
+
+<body>
+    <div class="contenedor-inicio">
+        <!--_______________________________Inicio "Barra de navegación"-->
+        <div class="navbar">
+            <button onclick="window.location.href='inicio.html'" class="boton-inicio">Inicio</button>
+            <button onclick="window.location.href='produccion_diaria.html'" class="boton-inicio">Refrigerado</button>
+            <img src="media/img/logotipo_171x94.png" alt="Logotipo SSR">
+            <button onclick="window.location.href='produccion_diaria_cong.html'" class="boton-inicio">Congelado</button>
+            <button onclick="cerrarSesion()" class="boton-inicio">Cerrar</button>
+        </div>
+        <!--__________________________________Fin "Barra de navegación"-->
+
+        <!--_________________________________Inicio "Usuario conectado"-->
+        <div id="usuario-conectado" class="usuario-conectado">
+            Usuario: <span id="email-usuario"></span>
+        </div>
+        <!--____________________________________Fin "Usuario conectado"-->
+
+        <!--________________________________________Inicio "calendario"-->
+        <div class="conjunto-calendario">
+            <div class="modelo-selector">
+                <label for="modelo">Selecciona un modelo:</label>
+                <select id="modelo">
+                    <option value="modelo-1">TP_H</option>
+                    <option value="modelo-2">TNP_H</option>
+                    <option value="modelo-3">DF</option>
+                    <option value="modelo-4">DS</option>
+                    <option value="modelo-5">VAC</option>
+                    <option value="modelo-6">AR</option>
+                    <option value="modelo-7">ANR</option>
+                    <option value="modelo-8">DBT</option>
+                    <option value="modelo-9">DBE</option>
+                    <option value="modelo-10">FES</option>
+                </select>
+            </div>
+            <div id="calendario" class="calendario"></div>
+        </div>
+        <!--___________________________________________Fin "calendario"-->
+
+        <!--____________________________________________Inicio "footer"-->
+        <div class="footer">
+            <footer>
+                <a href="mailto:ssrspaingroup@gmail.com">Enviar un correo</a> -
+                © <span id="year"></span> Todos los derechos reservados.
+            </footer>
+        </div>
+        <!--_______________________________________________Fin "footer"-->
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendario');
+    var modeloSelector = document.getElementById('modelo');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        locale: 'es', // Configura el idioma en español
+        firstDay: 1, // Establece el primer día de la semana en lunes (1)
+        selectable: true, // Permite seleccionar fechas
+        select: function(info) {
+            // No hacemos nada cuando se selecciona una fecha
+        },
+        dateClick: function(info) {
+            // Obtiene el modelo seleccionado
+            var modeloSeleccionado = modeloSelector.value;
+
+            // Obtiene la casilla seleccionada
+            var cell = info.dayEl;
+
+            // Si la casilla ya tiene la clase del modelo seleccionado, quítala; de lo contrario, agrégala
+            if (cell.classList.contains(modeloSeleccionado)) {
+                cell.classList.remove(modeloSeleccionado);
+            } else {
+                cell.classList.add(modeloSeleccionado);
+            }
+        }
+    });
+
+    calendar.render();
+});
+
+    </script>
+    <!--_______________________Inicio LLamada al documeto logica.js-->
+    <script src="logica.js"></script>
+    <!--__________________________Fin LLamada al documeto logica.js-->
+    <!--_________________________________Fin "Contenedor principal"-->
+</body>
+
+</html>

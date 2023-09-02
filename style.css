@@ -60,6 +60,8 @@ body {
 /*_______________________________________________Inicio Diseño navbar*/
 .navbar {
     width: 100%;
+    position: fixed;
+    z-index: 100; 
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -164,6 +166,7 @@ body {
 .footer {
     width: 100%;
     display: flex;
+    z-index: 100;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
@@ -458,6 +461,70 @@ body {
 }
 
 /*_______________________________________________Fin Organización de la página*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CALENDARIO~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*_________________________________________________Inicio opciones calenadario*/
+/* Definición de los modelos de casillas */
+.modelo-1 {
+    background-image: url(media/img/TP_H.png);
+    background-size: 100% 100%;
+}
+
+.modelo-2 {
+    background-image: url(media/img/TNP_H.png);
+    background-size: 100% 100%;
+}
+
+.modelo-3 {
+    background-image: url(media/img/DF.png);
+    background-size: 100% 100%;
+}
+
+.modelo-4 {
+    background-image: url(media/img/DS.png);
+    background-size: 100% 100%;
+}
+
+.modelo-5 {
+    background-image: url(media/img/VAC.png);
+    background-size: 100% 100%;
+}
+.modelo-6 {
+    background-image: url(media/img/AR.png);
+    background-size: 100% 100%;
+}
+.modelo-7 {
+    background-image: url(media/img/ANR.png);
+    background-size: 100% 100%;
+}
+.modelo-8 {
+    background-image: url(media/img/DBT.png);
+    background-size: 100% 100%;
+}
+.modelo-9 {
+    background-image: url(media/img/DBE.png);
+    background-size: 100% 100%;
+}
+.modelo-10 {
+    background-image: url(media/img/FES.png);
+    background-size: 100% 100%;
+}
+.calendario{
+    margin-top: 20px; /* Agrega margen superior */
+    margin-bottom: 20px; /* Agrega margen inferior */
+    height: 600px;
+    width: 600px;
+}
+.conjunto-calendario{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+/*____________________________________________________Fin opciones calenadario*/
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~RESPONSIBE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
