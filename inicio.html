@@ -12,6 +12,12 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert@2.1.2/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!--Inicio Librería calendario-->
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.css' rel='stylesheet' />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.js'></script>
+    <!--Fin librería calendario-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.js"></script>
 </head>
 <!--_____________________________________________________Fin "HEAD"-->
 
@@ -33,113 +39,164 @@
         </div>
         <!--____________________________________Fin "Usuario conectado"-->
         <!--__________________________________Fin "Barra de navegación"-->
-        <div class="datos-contenedor">
-            <!--_______________________________________Inicio "Refrigerado"-->
-            <div class="canvasRefr">
-                <h2>Refrigerado</h2>
-                <canvas id="grafico-produccion"></canvas>
+        <!--________________________________________Inicio "calendario"-->
+        <div class="conjunto-calendario">
+            <div class="modelo-selector">
+                <label for="modelo">Selecciona un modelo:</label>
+                <select id="modelo">
+                    <option value="modelo-1">TP_H</option>
+                    <option value="modelo-2">TNP_H</option>
+                    <option value="modelo-3">DF</option>
+                    <option value="modelo-4">DS</option>
+                    <option value="modelo-5">VAC</option>
+                    <option value="modelo-6">AR</option>
+                    <option value="modelo-7">ANR</option>
+                    <option value="modelo-8">DBT</option>
+                    <option value="modelo-9">DBE</option>
+                    <option value="modelo-10">FES</option>
+                </select>
             </div>
-            <!--_______________________________________________________________REFRIGERADO-->
-            <!--____________________________Inicio script para crear canvas-->
-            <script>
-                function generateChartRefrigerado(data) {
-                    var fechas = data.map(function (item) {
-                        return item.fecha;
-                    });
-
-                    var metrosCubicos = data.map(function (item) {
-                        return item.metros_cubicos;
-                    });
-
-                    var ctx = document.getElementById("grafico-produccion").getContext("2d");
-                    var myChartRefrigerado = new Chart(ctx, {
-                        type: "bar",
-                        data: {
-                            labels: fechas,
-                            datasets: [{
-                                label: "Producción Diaria (Metros Cúbicos)",
-                                data: metrosCubicos,
-                                backgroundColor: "rgba(55, 69, 138, 0.9)",
-                                borderColor: "rgba(255, 0, 0, 1)",
-                                borderWidth: 2
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            }
-                        }
-                    });
-                }
-
-                var xhrRefrigerado = new XMLHttpRequest();
-                xhrRefrigerado.open("GET", "mostrar_produccion.php", true);
-                xhrRefrigerado.onreadystatechange = function () {
-                    if (xhrRefrigerado.readyState === 4 && xhrRefrigerado.status === 200) {
-                        var produccionData = JSON.parse(xhrRefrigerado.responseText);
-                        generateChartRefrigerado(produccionData);
-                    }
-                };
-                xhrRefrigerado.send();
-            </script>
-            <!--_______________________________Fin script para crear canvas-->
-            <!--__________________________________________Fin "Refrigerado"-->
-
-            <!--_______________________________________Inicio "Congelado"-->
-            <div class="canvasCong">
-                <h2>Congelado</h2>
-                <canvas id="graficoProduccionCongelado"></canvas>
-            </div>
-            <!--_______________________________________________________________CONGELADO-->
-            <!--____________________________Inicio script para crear canvas-->
-            <script>
-                function generateChartCongelado(data) {
-                    var fechas = data.map(function (item) {
-                        return item.fecha;
-                    });
-
-                    var metrosCubicos = data.map(function (item) {
-                        return item.metros_cubicos;
-                    });
-
-                    var ctx = document.getElementById("graficoProduccionCongelado").getContext("2d");
-                    var myChartCongelado = new Chart(ctx, {
-                        type: "bar",
-                        data: {
-                            labels: fechas,
-                            datasets: [{
-                                label: "Producción Diaria (Metros Cúbicos)",
-                                data: metrosCubicos,
-                                backgroundColor: "rgba(255, 255, 255, 0.9)",
-                                borderColor: "rgba(255, 0, 0, 1)",
-                                borderWidth: 2
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            }
-                        }
-                    });
-                }
-
-                var xhrCongelado = new XMLHttpRequest();
-                xhrCongelado.open("GET", "mostrar_produccion_cong.php", true);
-                xhrCongelado.onreadystatechange = function () {
-                    if (xhrCongelado.readyState === 4 && xhrCongelado.status === 200) {
-                        var produccionData = JSON.parse(xhrCongelado.responseText);
-                        generateChartCongelado(produccionData);
-                    }
-                };
-                xhrCongelado.send();
-            </script>
-            <!--_______________________________Fin script para crear canvas-->
-            <!--__________________________________________Fin "Congelado"-->
+            <button onclick="guardarCambiosEnCookies()" style="height: 50px; width: 300px; margin-top: 20px;">Guardar
+                Cambios</button>
+            <div id="calendario" class="calendario"></div>
         </div>
+        <!--Inicio configuración JS-->
+        <script>
+            /*·····················································································*/
+            // Configuraciòn del calendario "Configuración general"
+            /*·····················································································*/
+            document.addEventListener('DOMContentLoaded', function () {
+                function aplicarCambiosDesdeCookie() {
+                    // Recupera los datos de la cookie
+                    var cookies = document.cookie.split(';');
+                    var cambiosCookie = '';
+
+                    cookies.forEach(function (cookie) {
+                        if (cookie.trim().startsWith('cambiosCalendario=')) {
+                            cambiosCookie = cookie.replace('cambiosCalendario=', '');
+                        }
+                    });
+
+                    if (cambiosCookie) {
+                        // Convierte la cadena JSON de la cookie de nuevo a un objeto
+                        var cambios = JSON.parse(cambiosCookie);
+
+                        // Aplica los cambios al calendario
+                        for (var fecha in cambios) {
+                            var clases = cambios[fecha];
+                            var cell = document.querySelector('.fc-day[data-date="' + fecha + '"]');
+                            if (cell) {
+                                cell.className = 'fc-day ' + clases;
+                            }
+                        }
+                    }
+                }
+
+                // Llama a la función para aplicar los cambios desde la cookie al cargar la página
+                aplicarCambiosDesdeCookie();
+
+                var calendarEl = document.getElementById('calendario');
+                var modeloSelector = document.getElementById('modelo');
+
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'dayGridMonth',
+                    locale: 'es', // Configura el idioma en español
+                    firstDay: 1, // Establece el primer día de la semana en lunes (1)
+                    selectable: true, // Permite seleccionar fechas
+                    select: function (info) {
+                        // No hacemos nada cuando se selecciona una fecha
+                    },
+                    dateClick: function (info) {
+                        // Obtiene el modelo seleccionado
+                        var modeloSeleccionado = modeloSelector.value;
+
+                        // Obtiene la casilla seleccionada
+                        var cell = info.dayEl;
+
+                        // Si la casilla ya tiene la clase del modelo seleccionado, quítala; de lo contrario, agrégala
+                        if (cell.classList.contains(modeloSeleccionado)) {
+                            cell.classList.remove(modeloSeleccionado);
+                            // Elimina el cambio de la cookie
+                            var fechaStr = info.date.toISOString();
+                            var cambios = JSON.parse(document.cookie.replace(/(?:(?:^|.*;\s*)cambiosCalendario\s*=\s*([^;]*).*$)|^.*$/, "$1")) || {};
+                            delete cambios[fechaStr];
+                            document.cookie = 'cambiosCalendario=' + JSON.stringify(cambios) + '; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                        } else {
+                            cell.classList.add(modeloSeleccionado);
+                            // Guarda el cambio en la cookie
+                            var fechaStr = info.date.toISOString();
+                            var cambios = JSON.parse(document.cookie.replace(/(?:(?:^|.*;\s*)cambiosCalendario\s*=\s*([^;]*).*$)|^.*$/, "$1")) || {};
+                            cambios[fechaStr] = modeloSeleccionado;
+                            document.cookie = 'cambiosCalendario=' + JSON.stringify(cambios) + '; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/;';
+                        }
+                    },
+                    datesSet: function (info) {
+                        // Este evento se dispara cuando cambia la fecha o la vista del calendario
+
+                        // Llama a la función para aplicar los cambios desde la cookie al cambiar de mes
+                        aplicarCambiosDesdeCookie();
+                    }
+                });
+
+                calendar.render();
+            });
+
+            /*·····················································································*/
+            // Configuraciòn del calendario "Configuración para almacenar los cambios en las cookies"
+            /*·····················································································*/
+            function guardarCambiosEnCookies() {
+                var calendarEl = document.getElementById('calendario');
+                var cells = calendarEl.querySelectorAll('.fc-day');
+
+                var cambios = {};
+
+                cells.forEach(function (cell) {
+                    var fecha = cell.getAttribute('data-date');
+                    var clases = cell.classList.toString();
+                    cambios[fecha] = clases;
+                });
+
+
+                // Convierte el objeto a una cadena JSON y guárdalo en una cookie
+                document.cookie = 'cambiosCalendario=' + JSON.stringify(cambios) + '; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+
+            }
+
+
+            /*·····················································································*/
+            // Configuraciòn del calendario "Configuración para recuperar los datos de las cookies"
+            /*·····················································································*/
+            document.addEventListener('DOMContentLoaded', function () {
+                // Recupera los datos de la cookie
+                var cookies = document.cookie.split(';');
+                var cambiosCookie = '';
+
+                cookies.forEach(function (cookie) {
+                    if (cookie.trim().startsWith('cambiosCalendario=')) {
+                        cambiosCookie = cookie.replace('cambiosCalendario=', '');
+                    }
+                });
+
+                if (cambiosCookie) {
+                    // Convierte la cadena JSON de la cookie de nuevo a un objeto
+                    var cambios = JSON.parse(cambiosCookie);
+
+                    // Aplica los cambios al calendario
+                    for (var fecha in cambios) {
+                        var clases = cambios[fecha];
+                        var cell = document.querySelector('.fc-day[data-date="' + fecha + '"]');
+                        if (cell) {
+                            cell.className = 'fc-day ' + clases;
+                        }
+                    }
+                }
+
+            });
+
+        </script>
+        <!--Fin configuración JS-->
+        <!--___________________________________________Fin "calendario"-->
+
         <!--_______________________________________Inicio incidencias-->
         <div class="incidencias">
             <button id="openModal" class="botInc">Introducir incidencia</button>
@@ -148,12 +205,6 @@
                 <!-- Aquí se cargarán las incidencias -->
             </div>
         </div>
-        <!--Obtener incidencias-->
-        <script>
-
-
-        </script>
-
         <script>
             document.getElementById("openModal").addEventListener("click", function () {
                 swal({
