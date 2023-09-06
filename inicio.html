@@ -56,143 +56,38 @@
                     <option value="modelo-10">FES</option>
                 </select>
             </div>
-            <button onclick="guardarCambiosEnCookies()" style="height: 50px; width: 300px; margin-top: 20px;">Guardar
+            <button onclick="guardarCambiosEnCookies()" >Guardar
                 Cambios</button>
             <div id="calendario" class="calendario"></div>
         </div>
         <!--Inicio configuración JS-->
         <script>
-            /*·····················································································*/
-            // Configuraciòn del calendario "Configuración general"
-            /*·····················································································*/
             document.addEventListener('DOMContentLoaded', function () {
-                function aplicarCambiosDesdeCookie() {
-                    // Recupera los datos de la cookie
-                    var cookies = document.cookie.split(';');
-                    var cambiosCookie = '';
-
-                    cookies.forEach(function (cookie) {
-                        if (cookie.trim().startsWith('cambiosCalendario=')) {
-                            cambiosCookie = cookie.replace('cambiosCalendario=', '');
-                        }
-                    });
-
-                    if (cambiosCookie) {
-                        // Convierte la cadena JSON de la cookie de nuevo a un objeto
-                        var cambios = JSON.parse(cambiosCookie);
-
-                        // Aplica los cambios al calendario
-                        for (var fecha in cambios) {
-                            var clases = cambios[fecha];
-                            var cell = document.querySelector('.fc-day[data-date="' + fecha + '"]');
-                            if (cell) {
-                                cell.className = 'fc-day ' + clases;
-                            }
-                        }
-                    }
-                }
-
-                // Llama a la función para aplicar los cambios desde la cookie al cargar la página
-                aplicarCambiosDesdeCookie();
-
                 var calendarEl = document.getElementById('calendario');
-                var modeloSelector = document.getElementById('modelo');
 
                 var calendar = new FullCalendar.Calendar(calendarEl, {
-                    initialView: 'dayGridMonth',
-                    locale: 'es', // Configura el idioma en español
-                    firstDay: 1, // Establece el primer día de la semana en lunes (1)
-                    selectable: true, // Permite seleccionar fechas
-                    select: function (info) {
-                        // No hacemos nada cuando se selecciona una fecha
-                    },
-                    dateClick: function (info) {
-                        // Obtiene el modelo seleccionado
-                        var modeloSeleccionado = modeloSelector.value;
-
-                        // Obtiene la casilla seleccionada
-                        var cell = info.dayEl;
-
-                        // Si la casilla ya tiene la clase del modelo seleccionado, quítala; de lo contrario, agrégala
-                        if (cell.classList.contains(modeloSeleccionado)) {
-                            cell.classList.remove(modeloSeleccionado);
-                            // Elimina el cambio de la cookie
-                            var fechaStr = info.date.toISOString();
-                            var cambios = JSON.parse(document.cookie.replace(/(?:(?:^|.*;\s*)cambiosCalendario\s*=\s*([^;]*).*$)|^.*$/, "$1")) || {};
-                            delete cambios[fechaStr];
-                            document.cookie = 'cambiosCalendario=' + JSON.stringify(cambios) + '; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-                        } else {
-                            cell.classList.add(modeloSeleccionado);
-                            // Guarda el cambio en la cookie
-                            var fechaStr = info.date.toISOString();
-                            var cambios = JSON.parse(document.cookie.replace(/(?:(?:^|.*;\s*)cambiosCalendario\s*=\s*([^;]*).*$)|^.*$/, "$1")) || {};
-                            cambios[fechaStr] = modeloSeleccionado;
-                            document.cookie = 'cambiosCalendario=' + JSON.stringify(cambios) + '; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/;';
-                        }
-                    },
-                    datesSet: function (info) {
-                        // Este evento se dispara cuando cambia la fecha o la vista del calendario
-
-                        // Llama a la función para aplicar los cambios desde la cookie al cambiar de mes
-                        aplicarCambiosDesdeCookie();
-                    }
+                    // Configuración del calendario
+                    initialView: 'dayGridMonth', // Vista inicial (puedes cambiarla)
+                    events: [
+                        // Aquí puedes agregar eventos
+                        // {
+                        //     title: 'Evento 1',
+                        //     start: '2023-09-10',
+                        //     end: '2023-09-12'
+                        // },
+                        // {
+                        //     title: 'Evento 2',
+                        //     start: '2023-09-15'
+                        // }
+                        // Puedes agregar más eventos según sea necesario
+                    ],
+                    locale: 'es', // Establece el idioma en español
+                    firstDay: 1, // Establece el primer día de la semana como lunes (1 para lunes, 0 para domingo)
+                            
                 });
 
-                calendar.render();
+                calendar.render(); // Renderiza el calendario en el elemento con el ID "calendario"
             });
-
-            /*·····················································································*/
-            // Configuraciòn del calendario "Configuración para almacenar los cambios en las cookies"
-            /*·····················································································*/
-            function guardarCambiosEnCookies() {
-                var calendarEl = document.getElementById('calendario');
-                var cells = calendarEl.querySelectorAll('.fc-day');
-
-                var cambios = {};
-
-                cells.forEach(function (cell) {
-                    var fecha = cell.getAttribute('data-date');
-                    var clases = cell.classList.toString();
-                    cambios[fecha] = clases;
-                });
-
-
-                // Convierte el objeto a una cadena JSON y guárdalo en una cookie
-                document.cookie = 'cambiosCalendario=' + JSON.stringify(cambios) + '; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
-
-            }
-
-
-            /*·····················································································*/
-            // Configuraciòn del calendario "Configuración para recuperar los datos de las cookies"
-            /*·····················································································*/
-            document.addEventListener('DOMContentLoaded', function () {
-                // Recupera los datos de la cookie
-                var cookies = document.cookie.split(';');
-                var cambiosCookie = '';
-
-                cookies.forEach(function (cookie) {
-                    if (cookie.trim().startsWith('cambiosCalendario=')) {
-                        cambiosCookie = cookie.replace('cambiosCalendario=', '');
-                    }
-                });
-
-                if (cambiosCookie) {
-                    // Convierte la cadena JSON de la cookie de nuevo a un objeto
-                    var cambios = JSON.parse(cambiosCookie);
-
-                    // Aplica los cambios al calendario
-                    for (var fecha in cambios) {
-                        var clases = cambios[fecha];
-                        var cell = document.querySelector('.fc-day[data-date="' + fecha + '"]');
-                        if (cell) {
-                            cell.className = 'fc-day ' + clases;
-                        }
-                    }
-                }
-
-            });
-
         </script>
         <!--Fin configuración JS-->
         <!--___________________________________________Fin "calendario"-->
